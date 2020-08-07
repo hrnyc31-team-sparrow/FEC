@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux'
-import currProdReducer from '.currProd'
-import otherreducer from './somenotMadereducer'
+import currProd from './currProd.js'
+import reviewMetaData from './metaData.js'
+import favorites from './favorites.js'
 
-export default combineReducers({
-  currProdReducer,
+export const rootReducer = combineReducers({
+  currProduct,
+  favorites,
+  reviewMetaData
 })
