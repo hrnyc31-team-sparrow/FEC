@@ -18,7 +18,11 @@ const getRelatedProducts = (product_id = 1) => {
   return axios.get(`${url}/products/${product_id}/related`)
 }
 
-
+const apiMaster = {
+getProductList,
+getProduct,
+getProductStyle,
+getRelatedProducts}
 // const getCart = () => {
 //   return axios.get(`${url}/cart`)
 // }

@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
-import currProd from './currProd.js'
-import reviewMetaData from './metaData.js'
+import currProduct from './currProd.js'
+import reviewMetaData from './reviewMetaData.js'
 import favorites from './favorites.js'
 
-export const rootReducer = combineReducers({
+const rootReducer = combineReducers({
   currProduct,
   favorites,
   reviewMetaData
 })
+
+export default rootReducer;
