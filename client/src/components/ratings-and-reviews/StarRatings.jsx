@@ -5,7 +5,7 @@ const api = "http://18.224.200.47/";
 const StarRatings = () => {
   const [metaData, setMetaData] = useState({});
 
-  const {ratings, recommended, characteristics, product_id} = metaData
+  // const {ratings, recommended, characteristics, product_id} = metaData
   console.log(metaData)
   // const averageRating = ratings[1] + (ratings[2] * 2) + (ratings[3] * 3) + (ratings[4] * 4) + (ratings[5] * 5) / ratings[1] + ratings[2] + ratings[3] + ratings[4] + ratings[5];
   // const width= (averageRating / 5) * 100
@@ -28,11 +28,11 @@ const StarRatings = () => {
 
   return (
     <div className="ratings">
-      <span className="average-rating">{averageRating}</span>
+      <span className="average-rating">3.5</span>
       {"                    "}
 
       <div className="average-star-rating">
-        <div className="average-rating-upper" style={{ width: width}}>
+        <div className="average-rating-upper" style={{ width: '70%'}}>
           <span>★</span>
           <span>★</span>
           <span>★</span>
