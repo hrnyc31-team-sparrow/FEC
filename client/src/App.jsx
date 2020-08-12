@@ -1,5 +1,6 @@
 import React from "react";
-import RatingsAndReviews from "./components/ratings-and-reviews/RatingsAndReviews"
+import RatingsAndReviews from "./components/ratings-and-reviews/RatingsAndReviews";
+import Overview from './components/overview/Overview';
 
 class App extends React.Component {
   render() {
@@ -8,6 +9,7 @@ class App extends React.Component {
         <h1>
           Hello
         </h1>
+        <Overview />
         <RatingsAndReviews />
       </>
     );

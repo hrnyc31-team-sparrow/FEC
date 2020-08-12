@@ -1,0 +1,50 @@
+.overview-parent {
+    width: 80%;
+    height: 750px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: 5% 70% 25%;
+    grid-gap: .5em;
+    border: 5px solid green;
+    padding: 10px;
+    color: dimgrey;
+    overflow: auto;
+
+    $border: 3px solid lightblue;
+    .overview-announcement {
+        grid-column: 1/3;
+        grid-row: 1/1;
+        border: $border;
+        text-align: center;
+    }
+
+    .overview-picture {
+        grid-column: 1/1;
+        grid-row: 2/2;
+        border: $border;
+        text-align: center;
+    }
+
+    .overview-product {
+        grid-column: 2/2;
+        grid-row: 2/2;
+        border: $border;
+        text-align: center;
+    }
+
+    .overview-description {
+        grid-column: 1/1;
+        grid-row: 3/3;
+        border: $border;
+        text-align: center;
+    }
+
+    .overview-checkmarks {
+        grid-column: 2/2;
+        grid-row: 3/3;
+        border: $border;
+        text-align: center;
+    }
+}
+

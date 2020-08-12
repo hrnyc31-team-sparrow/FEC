@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "css-loader": "^4.2.1",
     "express": "^4.17.1",
     "path": "^0.12.7",
     "react": "^16.13.1",
@@ -45,6 +46,7 @@
     "react-redux": "^7.2.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "style-loader": "^1.2.1",
     "thunk": "0.0.1"
   }
 }
