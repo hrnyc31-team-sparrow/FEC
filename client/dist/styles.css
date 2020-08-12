@@ -1,0 +1,145 @@
+
+/* ratings and reviews */
+.wrapper{
+  width:70%;
+  height: 800px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 5% 95%;
+  grid-gap: .5em;
+  background-color: #2196F3;
+  padding: 10px;
+  font-family: 'Nunito', sans-serif;
+  color: dimgrey;
+  overflow: auto;
+}
+
+.wrapper > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px 0;
+}
+
+.title {
+  grid-column: 1 /span 2;
+  grid-row: 1;
+  margin-left: .5em;
+  margin-right: .5em;
+  vertical-align: center;
+  font-size: 1em;
+}
+
+.arrow {
+  border: solid  dimgrey;
+  border-width: 0 1.5px 1.5px 0;
+  display: inline-block;
+  padding: 2px;
+  vertical-align: 20%;
+
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.ratings {
+  grid-column: 1;
+  grid-row: 2;
+  margin-left: .5em;
+
+}
+.reviews {
+  grid-column: 2;
+  grid-row: 2;
+  margin-right: .5em;
+  display: grid;
+  grid-template-rows: 5% 95%;
+  grid-gap: .5em;
+}
+
+
+.reviews > div {
+  background-color: rgba(255, 255, 255, 0.8);
+
+}
+
+.review-feed-container {
+  grid-row: 2;
+  border-bottom: gray;
+}
+
+.text-style-1 {
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.text-style-2 {
+  font-size: .7em;
+}
+
+.dropdown {
+  text-decoration: underline;
+}
+.stars-review-body {
+  float: left;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  color: gray;
+}
+
+
+
+.smaller-stars{
+  font-size: 20px;
+}
+
+
+.user-and-date {
+  float: right;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  color: gray;
+}
+
+.review-title {
+float: left;
+}
+
+.average-rating {
+  font-size: 4em;
+}
+
+.average-star-rating{
+  display: inline-block;
+  unicode-bidi: bidi-override;
+  color: #888888;
+  font-size: 20px;
+  height: 20px;
+  width: auto;
+  margin: 0;
+  position: relative;
+  padding: 0;
+  vertical-align: 120%;
+}
+
+.average-rating-upper {
+  color: rgb(229, 255, 0);
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.average-rating-lower {
+  padding: 0;
+  display: flex;
+  z-index: 0;
+}
+
+
+
+
