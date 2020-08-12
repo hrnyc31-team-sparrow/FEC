@@ -1,8 +1,10 @@
+import apiMaster from '../apiMaster.js'
+
 // state:
 // {
-//   currProduct: {} 
+//   currProduct: {}
 //   sessionToken:
-//   favorites: []  
+//   favorites: []
 //   reviewMetaData: {} //
 // }
 
@@ -23,3 +25,20 @@ export const updateMetaData = (newMetaData) => ({
   type: 'UPDATE_META_DATA',
   reviewMetaData: newMetaData
 })
+
+
+export const handleProductUpdate = (product_id) => {
+  console.log('inside handleProduct update')
+  return (dispatch) => {
+    getProduct(product_id)
+    .then((currProduct) => {
+      console.log(currProduct)
+      return dispatch(updateCurrProduct(currProduct))
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+}
+
+export default {handleProductUpdate, updateMetaData, updateFavorites, updateCurrProduct}

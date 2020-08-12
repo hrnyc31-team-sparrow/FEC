@@ -1,4 +1,4 @@
-import {UPDATE_FAVORITES} from '../actions/index'
+// import {UPDATE_FAVORITES} from '../actions/index'
 
 const favoritesReducer = (state = null , action) => {
   switch (action.type) {
