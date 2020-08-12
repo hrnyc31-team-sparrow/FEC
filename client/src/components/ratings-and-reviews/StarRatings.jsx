@@ -2,28 +2,28 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 const api = "http://18.224.200.47/";
 
-const StarRatings = () => {
-  const [metaData, setMetaData] = useState({});
+const StarRatings = ({reviewMetadata, reviewsList}) => {
+  // const [metaData, setMetaData] = useState({});
 
-  // const {ratings, recommended, characteristics, product_id} = metaData
-  console.log(metaData)
-  // const averageRating = ratings[1] + (ratings[2] * 2) + (ratings[3] * 3) + (ratings[4] * 4) + (ratings[5] * 5) / ratings[1] + ratings[2] + ratings[3] + ratings[4] + ratings[5];
-  // const width= (averageRating / 5) * 100
+  // // const {ratings, recommended, characteristics, product_id} = metaData
+  // console.log(metaData)
+  // // const averageRating = ratings[1] + (ratings[2] * 2) + (ratings[3] * 3) + (ratings[4] * 4) + (ratings[5] * 5) / ratings[1] + ratings[2] + ratings[3] + ratings[4] + ratings[5];
+  // // const width= (averageRating / 5) * 100
 
-  useEffect(() => {
-    const getMetadata = (id) => {
-      axios
-        .get(`${api}reviews/${id}/meta`)
-        .then(({data}) => {
-          console.log(data)
-          setMetaData(data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    getMetadata(1);
-  }, []);
+  // useEffect(() => {
+  //   const getMetadata = (id) => {
+  //     axios
+  //       .get(`${api}reviews/${id}/meta`)
+  //       .then(({data}) => {
+  //         console.log(data)
+  //         setMetaData(data);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   };
+  //   getMetadata(1);
+  // }, []);
 
 
   return (
