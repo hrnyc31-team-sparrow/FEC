@@ -1,4 +1,5 @@
 import React from "react";
+import RatingsAndReviews from "./components/ratings-and-reviews/RatingsAndReviews"
 
 class App extends React.Component {
   render() {
@@ -7,6 +8,7 @@ class App extends React.Component {
         <h1>
           Hello
         </h1>
+        <RatingsAndReviews />
       </>
     );
   }

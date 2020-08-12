@@ -1,0 +1,42 @@
+$font-stack: 'Noto Sans', sans-serif;
+$primary-color: dimgrey;
+
+.ratings-and-review-container {
+  font: 100% $font-stack;
+  color: $primary-color;
+  display: grid;
+  grid-template: 10% 1fr 20% / 1fr 2fr;
+  justify-content: space-around;
+  padding: 5%;
+}
+
+.average-rating {
+
+}
+.star-rating-bars {
+
+}
+
+.size-and-comfort-bars {
+
+}
+
+.review-feed-container {
+
+}
+.review-feed {
+
+}
+
+.review-response {
+
+}
+
+.more-reviews {
+
+}
+
+.add-a-review {
+
+}
+
