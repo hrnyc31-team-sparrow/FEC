@@ -4,7 +4,7 @@ const api = "http://18.224.200.47/";
 
 const StarRatings = () => {
   const [metaData, setMetaData] = useState({});
-  const [product_id, setProduct_id] = useState
+
   const {ratings, recommended, characteristics, product_id} = metaData
   console.log(metaData)
   // const averageRating = ratings[1] + (ratings[2] * 2) + (ratings[3] * 3) + (ratings[4] * 4) + (ratings[5] * 5) / ratings[1] + ratings[2] + ratings[3] + ratings[4] + ratings[5];
