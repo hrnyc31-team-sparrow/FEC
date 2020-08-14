@@ -12,14 +12,14 @@ const App = () => {
   const [productsList, setProductsList] = useState(productsListData);
   const [productStyles, setProductStyles] = useState(productStylesData);
   const [reviewMetadata, setReviewMetadata] = useState(reviewMetadataData);
-  const [reviewsList, setReviewsList] = useState(reviewsListData);
+
 
   return (
     <>
       <h1>
         Hello
       </h1>
-      <RatingsAndReviews reviewMetadata={reviewMetadata} reviewsList={reviewsList}/>
+      <RatingsAndReviews reviewMetadata={reviewMetadata} />
     </>
   );
 }

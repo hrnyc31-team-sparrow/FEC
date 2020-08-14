@@ -1,1 +1,37 @@
 @import './Styles/overview.scss';
+@import './Styles/reviews.scss';
+
+$stars-color: rgb(255, 217, 0);
+
+
+//star-rating
+.star-rating {
+  display: inline-block;
+  unicode-bidi: bidi-override;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: $stars-color;
+  color: white;
+  font-size: 15px;
+  height: 15px;
+  width: auto;
+  margin: 0;
+  position: relative;
+  padding: 0;
+}
+
+.star-rating-upper {
+  color: $stars-color;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.star-rating-lower {
+  padding: 0;
+  display: flex;
+  z-index: 0;
+}
