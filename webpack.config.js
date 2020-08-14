@@ -15,13 +15,19 @@ const config = {
         exclude: /node_modules/
       },
       {
-        test: /\.scss$/,
+        test: /\.s(a|c)ss$/,
         use: [
           'style-loader',
           'css-loader',
           'sass-loader'
         ]
-      }
+      },
+      {
+        test: /\.(jpg|jpeg|png)$/,
+        use: {
+         loader: 'url-loader'
+        }
+       }
     ]
   },
   resolve: {
