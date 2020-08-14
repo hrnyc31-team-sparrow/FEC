@@ -6,6 +6,7 @@ import productStylesData from "../../mockData/productStylesData.js"
 import reviewMetadataData from "../../mockData/reviewMetadataData.js"
 import reviewsListData from "../../mockData/reviewsListData.js"
 import Overview from "./components/overview/Overview";
+import team_sparrow from "../dist/lib/team_sparrow.png"
 
 
 const App = () => {
@@ -17,11 +18,11 @@ const App = () => {
 
   return (
     <>
-      <h1>
-        Hello
-      </h1>
-      <RatingsAndReviews reviewMetadata={reviewMetadata} />
+      <div className="header">
+         TEAM <span><img className='sparrow' src={team_sparrow}></img></span> SPARROW
+      </div>
       <Overview productStyles={productStyles} />
+      <RatingsAndReviews reviewMetadata={reviewMetadata} />
     </>
   );
 };
