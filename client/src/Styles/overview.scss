@@ -1,6 +1,6 @@
 .overview-parent {
     width: 80%;
-    height: 750px;
+    height: 800px;
     margin: auto;
     display: grid;
     grid-template-columns: 1.5fr 1fr;
@@ -12,39 +12,162 @@
     overflow: auto;
 
     $border: 3px solid lightblue;
-    .overview-announcement {
+    .announcement {
         grid-column: 1/3;
         grid-row: 1/1;
         border: $border;
         text-align: center;
     }
 
-    .overview-picture {
-        grid-column: 1/1;
+    .primary-image {
+        grid-column: 1;
+    }
+    
+    .expanded-image {
+        grid-column: 1/3;
+    }
+
+    .image-gallery {
         grid-row: 2/2;
         border: $border;
         text-align: center;
+        background-color: lightgray;
+
+        .image-container {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+            
+            .main-image {
+                position: absolute;
+                max-height: 100%;
+                max-width: 100%;
+                margin-right: 0 auto;
+                margin-left: 0 auto;
+                left: 0;
+                right: 0;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .overlay-container {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                border: 3px solid red;
+                
+            }
+            
+            .expand-view {
+                position: absolute;
+                cursor: pointer;
+                width: 15px;
+                height: 15px;
+                padding: 10px;
+                top: 0;
+                right: 0;
+                margin-top: auto;
+                margin-right: auto;
+            }
+
+            .arrow-right,
+            .arrow-left {
+                position: absolute;
+                cursor: pointer;
+                max-width: 20px;
+                padding: 10px;
+                top: 0;
+                bottom: 0;
+                margin-top: auto;
+                margin-bottom: auto;
+            }
+
+            .arrow-right {
+                transform: rotate(-90deg);
+                right: 0;
+                margin-right: auto;
+            }
+
+            .arrow-left {
+                transform: rotate(90deg);
+                left: 90px;
+            }
+
+            .thumbnail-gallery {
+                border: 5px solid yellow;
+                position: absolute;
+                padding: 15px;
+                top: 0;
+                bottom: 0;
+                margin-top: auto;
+                margin-bottom: auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                pointer-events: auto;
+
+            }
+            .thumbnail {
+                cursor: pointer;
+            }
+            .selected {
+                border-bottom: 5px solid rgb(50, 50, 50);
+            }
+            .thumbnail-image {
+                cursor: pointer;
+                width: 60px;
+                height: 60px;
+                border: 3px solid rgb(50, 50, 50);
+                object-fit: cover;
+            }
+
+            .thumbnail-arrow-top,
+            .thumbnail-arrow-bottom {
+                width: 20px;
+                cursor: pointer;
+                left: 0;
+                right: 0;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .thumbnail-arrow-top {
+                transform: rotate(-90deg);
+                margin-bottom: -10px;
+            }
+
+            .thumbnail-arrow-bottom {
+                transform: rotate(90deg);
+                margin-top: -10px;
+            }
     }
 
-    .overview-product {
+    .info-primary {
         grid-column: 2/2;
+    }
+    .info-hidden {
+        display: none;
+    }
+    .product-information {
         grid-row: 2/2;
         border: $border;
         text-align: center;
     }
 
-    .overview-description {
+    .product-description {
         grid-column: 1/1;
         grid-row: 3/3;
         border: $border;
         text-align: center;
     }
 
-    .overview-checkmarks {
+    .product-details {
         grid-column: 2/2;
         grid-row: 3/3;
         border: $border;
         text-align: center;
     }
 }
+
 

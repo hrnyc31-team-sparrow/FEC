@@ -5,6 +5,7 @@ import productsListData from "../../mockData/productsListData.js"
 import productStylesData from "../../mockData/productStylesData.js"
 import reviewMetadataData from "../../mockData/reviewMetadataData.js"
 import reviewsListData from "../../mockData/reviewsListData.js"
+import Overview from "./components/overview/Overview";
 
 
 const App = () => {
@@ -19,11 +20,11 @@ const App = () => {
       <h1>
         Hello
       </h1>
+      <Overview productStyles={productStyles} />
       <RatingsAndReviews reviewMetadata={reviewMetadata} reviewsList={reviewsList}/>
     </>
   );
-}
-
+};
 
 
 export default App;
