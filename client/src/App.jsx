@@ -20,8 +20,8 @@ const App = () => {
       <h1>
         Hello
       </h1>
+      <Overview productStyles={productStyles} reviewMetadata={reviewMetadata} />
       <RatingsAndReviews reviewMetadata={reviewMetadata} />
-      <Overview productStyles={productStyles} />
     </>
   );
 };

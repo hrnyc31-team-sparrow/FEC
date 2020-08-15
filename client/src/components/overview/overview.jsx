@@ -1,20 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import ImageGallery from './ImageGallery.jsx';
-import productStyles from '../../../../mockData/productStylesData';
-
-
+import ImageGallery from './image-gallery/ImageGallery.jsx';
+import productStylesData from '../../../../mockData/productStylesData';
+import ProductInfo from './product-info/ProductInfo.jsx';
+import productInfoData from '../../../../mockData/productInfoData';
 
 const Overview = () => {
-  const [currentStyle, setCurrentStyle] = useState(productStyles.results[0]);
+  const [productStyles, setProductStyles] = useState(productStylesData.results);
+  const [styleIndex, setStyleIndex] = useState(0);
+  const [currentStyle, setCurrentStyle] = useState(productStyles[styleIndex]);
   const [expandedView, resizeView] = useState(false);
+  const [productInfo, setProductInfo] = useState(productInfoData);
   const toggleExpanded = () => resizeView(!expandedView);
+  const toggleStyle = (value) => setStyleIndex(value);
 
+  useEffect(() => {
+    setCurrentStyle(productStyles[styleIndex]);
+  }, [currentStyle, styleIndex]);
 
   return (
     <div className='overview-parent' >
-      <div className='announcement'>Sitewide Announcement Message!</div>
+      <div className='announcement'><em>SITE-WIDE ANNOUNCEMENT MESSAGE!</em> -- SALE / DISCOUNT <b>OFFER</b> -- <u>NEW PRODUCT HIGHLIGHT</u></div>
       <ImageGallery currentStyle={currentStyle} toggleExpanded={toggleExpanded} expandedView={expandedView} />
-      <div className={ expandedView ? "product-information info-hidden" : "product-information info-primary"}>Product Overview</div>
+      <ProductInfo expandedView={expandedView} productInfo={productInfo} currentStyle={currentStyle} productStyles={productStyles} toggleStyle={toggleStyle} index={styleIndex} />
       <div className='product-description'>Product Description</div>
       <div className='product-details'>Description checkmarks</div>
     </div>
