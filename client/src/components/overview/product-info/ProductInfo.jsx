@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Rating from './Reviews.jsx';
 import Styles from './Styles';
+import AddToCart from './AddToCart';
 import reviewMetadataData from "../../../../../mockData/reviewMetadataData";
 
 
@@ -22,7 +23,7 @@ const ProductInfo = ({expandedView, productInfo, productStyles, currentStyle, to
                     <Styles productStyles={productStyles} toggleStyle={toggleStyle} index={index} />
                 </div>
                 <div className="add-cart">
-                    Add to Cart
+                    <AddToCart index={index} productStyles={productStyles} />
                 </div>
             </div>
             

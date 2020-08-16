@@ -3,11 +3,12 @@ import React from 'react';
 const Styles = ({productStyles, index, toggleStyle}) => (
     <div className="style-gallery">
         {productStyles.map((style, i) => (
-            <div key={i}>
+            <div className="style-container" key={i}>
+                
+                <img value={i} onClick={() => toggleStyle(i)} className="style-image" src={style.photos[0].thumbnail_url} />
                 {index === i && (
                     <img className="checkmark" src="./images/checkmark-circle.png" />
                 )}
-                <img value={i} onClick={() => toggleStyle(i)} className="style-image" src={style.photos[0].thumbnail_url} />
             </div>
         ))}
     </div>
