@@ -3,7 +3,6 @@ import Ratings from "./Ratings";
 import ReviewsFeed from "./ReviewsFeed";
 import apiMaster from "../../apiMaster.js";
 
-
 const RatingsAndReviews = ({ reviewMetadata }) => {
   const [reviewsList, setReviewsList] = useState({});
   const {
@@ -13,15 +12,15 @@ const RatingsAndReviews = ({ reviewMetadata }) => {
     reportReview,
   } = apiMaster;
 
-const ratings= reviewMetadata.ratings
-const totalReviews= ratings[1] + ratings[2] + ratings[3] + ratings[4] + ratings[5];
+  const ratings = reviewMetadata.ratings;
+  const totalReviews =
+    ratings[1] + ratings[2] + ratings[3] + ratings[4] + ratings[5];
 
-
-const updateReviewListState = (id , newCount, sortBy) => {
+  const updateReviewListState = (id, newCount, sortBy) => {
     return getReviewList(id, 1, newCount, sortBy)
-      .then(( {data} ) => {
+      .then(({ data }) => {
         setReviewsList(data);
-        console.log(data)
+        console.log(data);
       })
       .catch((err) => {
         console.log(err);
@@ -35,7 +34,7 @@ const updateReviewListState = (id , newCount, sortBy) => {
   const handleClickHelpful = (review_id, product_id, newCount) => {
     return updateReviewHelpfulness(review_id)
       .then(() => {
-        Promise.resolve(updateReviewListState(product_id))
+        Promise.resolve(updateReviewListState(product_id));
       })
       .catch((err) => {
         console.log(err);
@@ -45,19 +44,21 @@ const updateReviewListState = (id , newCount, sortBy) => {
   const handleClickReport = (review_id, product_id, newCount) => {
     return reportReview(review_id)
       .then(() => {
-        Promise.resolve(updateReviewListState(product_id))
+        Promise.resolve(updateReviewListState(product_id));
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-
-
   return (
     <div className="wrapper ratings-and-reviews-container">
       <div className="title">RATINGS & REVIEWS</div>
-      <Ratings reviewMetadata={reviewMetadata} reviewsList={reviewsList} totalReviews={totalReviews}/>
+      <Ratings
+        reviewMetadata={reviewMetadata}
+        reviewsList={reviewsList}
+        totalReviews={totalReviews}
+      />
       <ReviewsFeed
         reviewMetadata={reviewMetadata}
         reviewsList={reviewsList}
@@ -71,5 +72,3 @@ const updateReviewListState = (id , newCount, sortBy) => {
 };
 
 export default RatingsAndReviews;
-
-

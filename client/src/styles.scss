@@ -1,8 +1,22 @@
 @import './Styles/overview.scss';
 @import './Styles/reviews.scss';
-
 $stars-color: rgb(255, 217, 0);
 
+
+.header {
+  background-color: dimgray;
+  margin: auto;
+  width: 80%;
+  font-family: 'Fugaz One', cursive;
+  color: white;
+  height: 10%;
+  text-align: center;
+  font-size: 2em;
+  padding: .5em;
+}
+.sparrow {
+  height: 5vh;
+}
 
 //star-rating
 .star-rating {
