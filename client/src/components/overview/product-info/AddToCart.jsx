@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 const AddToCart = ({productStyles, index}) => {
   const quantity = [];
   for (let i = 0; i < 15; i++) {
     quantity.push(i);
   }
+  const [isFavorite, updateFavorite] = useState(false);
+  const toggleFavorite = () => updateFavorite(!isFavorite);
+
   return (
     <div className="add-cart-container">
       <div className="select-container">
@@ -29,7 +32,7 @@ const AddToCart = ({productStyles, index}) => {
             <button className="cart-button">ADD TO CART     +</button>
           </div>
           <div className="favorite-button-container">
-            <button className="favorite-button">★</button>
+            <button onClick={() => toggleFavorite()} className={isFavorite ? "favorite-button selected" : "favorite-button default"}>★</button>
           </div>
       </div>
     </div>
