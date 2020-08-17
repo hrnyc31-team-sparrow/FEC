@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import StarRating from "./StarRating";
 import moment from "moment";
 import apiMaster from "../../apiMaster.js";
-import altImage from "../../../dist/lib/altImage.png";
+import altImage from "../../../dist/lib/altImage.jpg";
 import Modal from "./Modal";
 
 const ReviewsFeed = ({

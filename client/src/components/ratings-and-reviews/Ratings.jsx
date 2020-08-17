@@ -22,7 +22,7 @@ const Rating = ({ reviewMetadata, reviewsList, totalReviews }) => {
         <StarRating width={width} />
       </span>
       <br />
-      <p>
+      <p className='text-style-1' >
         {Math.floor(
           (reviewMetadata.recommended[1] /
             (reviewMetadata.recommended[0] + reviewMetadata.recommended[1])) *
