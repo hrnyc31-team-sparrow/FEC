@@ -25,7 +25,12 @@ const AddToCart = ({productStyles, index}) => {
         </div>
       </div>
       <div className="cart-button-container">
-          <div className="cart-button">ADD TO CART  +</div>
+          <div className="add-button-container">
+            <button className="cart-button">ADD TO CART     +</button>
+          </div>
+          <div className="favorite-button-container">
+            <button className="favorite-button">★</button>
+          </div>
       </div>
     </div>
   );
