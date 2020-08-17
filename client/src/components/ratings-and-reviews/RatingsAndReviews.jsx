@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import Ratings from "./Ratings";
 import ReviewsFeed from "./ReviewsFeed";
 import apiMaster from "../../apiMaster.js";
+import reviewsListData from '../../../../mockData/reviewsListData'
 
-const RatingsAndReviews = ({ reviewMetadata }) => {
-  const [reviewsList, setReviewsList] = useState({});
+
+const RatingsAndReviews = ({ reviewMetadata, productInfoData}) => {
+  const [reviewsList, setReviewsList] = useState(reviewsListData);
+
   const {
     getReviewList,
     getReviewMetadata,
@@ -27,9 +30,9 @@ const RatingsAndReviews = ({ reviewMetadata }) => {
       });
   };
 
-  useEffect(() => {
-    updateReviewListState(1);
-  }, []);
+  // useEffect(() => {
+  //   updateReviewListState(1);
+  // }, []);
 
   const handleClickHelpful = (review_id, product_id, newCount) => {
     return updateReviewHelpfulness(review_id)
@@ -66,6 +69,7 @@ const RatingsAndReviews = ({ reviewMetadata }) => {
         handleClickReport={handleClickReport}
         totalReviews={totalReviews}
         updateReviewListState={updateReviewListState}
+        productInfoData={productInfoData}
       />
     </div>
   );

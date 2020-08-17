@@ -2,7 +2,7 @@ $font-stack: "Rubik", sans-serif;
 $primary-color: dimgrey;
 
 $title-text-size: 0.9em;
-$body-width: 70%;
+$body-width: 80%;
 $text-size-1: 1em bold;
 $text-size-2: 0.7em;
 $padding-margin: 0.5em;
@@ -67,15 +67,13 @@ $padding-margin: 0.5em;
   .text-style-1 {
     font: $text-size-1 $font-stack;
   }
-
-  .clickable {
-    text-decoration: underline;
-    cursor:pointer;
-    margin-right: $padding-margin ;
-    margin-left: $padding-margin ;
-  }
 }
-
+.clickable {
+  text-decoration: underline;
+  cursor: pointer;
+  margin-right: $padding-margin;
+  margin-left: $padding-margin;
+}
 //review body
 .text-style-2 {
   font: $text-size-2 $font-stack;
@@ -133,10 +131,10 @@ $padding-margin: 0.5em;
 }
 
 #sorting {
-  border:0px;
-  outline:0px;
+  border: 0px;
+  outline: 0px;
   background-color: lightcyan;
-  font-family: "Rubik", sans-serif ;
+  font-family: "Rubik", sans-serif;
 }
 
 .loadOrAdd-container {
@@ -146,19 +144,19 @@ $padding-margin: 0.5em;
   .load {
     grid-column: 1;
     padding: 1em;
-    border: solid .1em;
+    border: solid 0.1em;
     border-radius: 0;
     background-color: lightcyan;
-    cursor:pointer;
+    cursor: pointer;
   }
   .add {
     grid-column: 2;
     padding: 1em;
-    border: solid .1em;
+    border: solid 0.1em;
     border-radius: 0;
     background-color: lightcyan;
     margin-left: 1em;
-    cursor:pointer;
+    cursor: pointer;
   }
 }
 
@@ -173,22 +171,24 @@ $padding-margin: 0.5em;
 }
 
 .modal {
-  position: fixed;
-  top: 0;
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
   left: 0;
-  width:100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-
-  .modal-main {
-    position:fixed;
-    background: white;
-    width: 80%;
-    height: auto;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-  }
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
 }
 
 .display-block {
@@ -197,4 +197,82 @@ $padding-margin: 0.5em;
 
 .display-none {
   display: none;
+}
+/* Style the close button (span) */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: lightblue;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Three column layout */
+.breakdown-container {
+  display: grid;
+  grid-template-columns: 15% 85%;
+  grid-template-rows: repeat(5, 1.5em);
+  margin-right: 1em;
+}
+.star-count {
+  grid-column: 1;
+  vertical-align: bottom;
+}
+
+.bar {
+  grid-column: 2;
+  margin-right: 2em;
+}
+
+/* The bar container */
+.bar-container {
+  vertical-align: text-top;
+  margin: $padding-margin;
+  width: 100%;
+  background-color: #f1f1f1;
+  text-align: center;
+  color: white;
+}
+
+/* Individual bars */
+.bar-5 {
+  grid-row: 1;
+  vertical-align: text-top;
+  margin-top: $padding-margin;
+  height: 0.5em;
+  background-color: $primary-color;
+}
+.bar-4 {
+  grid-row: 2;
+  vertical-align: text-top;
+  margin-top: $padding-margin;
+  height: 0.5em;
+  background-color: $primary-color;
+}
+.bar-3 {
+  grid-row: 3;
+  vertical-align: text-top;
+  margin-top: $padding-margin;
+  height: 0.5em;
+  background-color: $primary-color;
+}
+.bar-2 {
+  grid-row: 4;
+  vertical-align: text-top;
+  margin-top: $padding-margin;
+  height: 0.5em;
+  background-color: $primary-color;
+}
+.bar-1 {
+  grid-row: 5;
+  vertical-align: text-top;
+  margin-top: $padding-margin;
+  height: 0.5em;
+  background-color: $primary-color;
 }

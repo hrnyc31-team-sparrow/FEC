@@ -21,8 +21,8 @@ const App = () => {
       <div className="header">
          TEAM <span><img className='sparrow' src={team_sparrow}></img></span> SPARROW
       </div>
-      <Overview productStyles={productStyles} reviewMetadata={reviewMetadata}/>
-      <RatingsAndReviews reviewMetadata={reviewMetadata} />
+      <Overview productStyles={productStyles} />
+      <RatingsAndReviews reviewMetadata={reviewMetadata} productInfoData={productInfoData}/>
     </>
   );
 };
