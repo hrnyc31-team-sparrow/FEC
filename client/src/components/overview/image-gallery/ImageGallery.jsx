@@ -3,14 +3,17 @@ import ThumbnailGallery from './ThumbnailGallery';
 
 const ImageGallery = ({currentStyle, expandedView, toggleExpanded}) => {
   const [index, changeIndex] = useState(0);
-  const [photos, setPhotos] = useState(currentStyle.photos);
-  const [currentPhoto, setCurrentPhoto] = useState(photos[index]);
-  const [thumbnails, setThumbnails] = useState(photos);
+  const [currentPhoto, setCurrentPhoto] = useState(currentStyle.photos[index]);
+  const [thumbnails, setThumbnails] = useState(currentStyle.photos);
   const selectThumbnail = (value) => changeIndex(value);
   
   useEffect(() => {
     setCurrentPhoto(currentStyle.photos[index]);
   }, [currentStyle, index]);
+
+  useEffect(() => {
+    setThumbnails(currentStyle.photos);
+  }, [currentStyle]);
 
 
   return (
