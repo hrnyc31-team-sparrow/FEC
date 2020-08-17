@@ -217,7 +217,7 @@ $padding-margin: 0.5em;
 .breakdown-container {
   display: grid;
   grid-template-columns: 15% 85%;
-  grid-template-rows: repeat(5,1.5em);
+  grid-template-rows: repeat(5, 1.5em);
   margin-right: 1em;
 }
 .star-count {
@@ -245,7 +245,6 @@ $padding-margin: 0.5em;
   grid-row: 1;
   vertical-align: text-top;
   margin-top: $padding-margin;
-  width: 60%;
   height: 0.5em;
   background-color: $primary-color;
 }
@@ -253,7 +252,6 @@ $padding-margin: 0.5em;
   grid-row: 2;
   vertical-align: text-top;
   margin-top: $padding-margin;
-  width: 30%;
   height: 0.5em;
   background-color: $primary-color;
 }
@@ -261,7 +259,6 @@ $padding-margin: 0.5em;
   grid-row: 3;
   vertical-align: text-top;
   margin-top: $padding-margin;
-  width: 10%;
   height: 0.5em;
   background-color: $primary-color;
 }
@@ -269,7 +266,6 @@ $padding-margin: 0.5em;
   grid-row: 4;
   vertical-align: text-top;
   margin-top: $padding-margin;
-  width: 4%;
   height: 0.5em;
   background-color: $primary-color;
 }
@@ -277,7 +273,6 @@ $padding-margin: 0.5em;
   grid-row: 5;
   vertical-align: text-top;
   margin-top: $padding-margin;
-  width: 15%;
   height: 0.5em;
   background-color: $primary-color;
 }

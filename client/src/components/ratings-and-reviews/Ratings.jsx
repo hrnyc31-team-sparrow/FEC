@@ -22,8 +22,19 @@ const Rating = ({ reviewMetadata, reviewsList, totalReviews }) => {
         <StarRating width={width} />
       </span>
       <br />
-  <p>{Math.floor(reviewMetadata.recommended[1]/(reviewMetadata.recommended[0]+reviewMetadata.recommended[1])*100)}% of reviews recommend this product</p>
-      <RatingBreakdown />
+      <p>
+        {Math.floor(
+          (reviewMetadata.recommended[1] /
+            (reviewMetadata.recommended[0] + reviewMetadata.recommended[1])) *
+            100
+        )}
+        % of reviews recommend this product
+      </p>
+      <RatingBreakdown
+        reviewMetadata={reviewMetadata}
+        totalReviews={totalReviews}
+        reviewsList={reviewsList}
+      />
     </div>
   );
 };
