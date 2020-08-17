@@ -3,6 +3,7 @@ import StarRating from "./StarRating";
 import moment from "moment";
 import apiMaster from "../../apiMaster.js";
 import altImage from "../../../dist/lib/altImage.png";
+import Modal from "./Modal";
 
 const ReviewsFeed = ({
   reviewMetadata,
@@ -11,10 +12,14 @@ const ReviewsFeed = ({
   handleClickReport,
   totalReviews,
   updateReviewListState,
+  productInfoData,
 }) => {
   const sortOptions = ["Relevant", "Helpful", "Newest"];
   const [currentSort, setCurrentSort] = useState("relevant");
   const [currentIndex, setCurrentIndex] = useState(4);
+  const [showModal, setShowModal] = useState(false);
+  const [currentModalView, setCurrentModalView] = useState("photo");
+
   const { addReview } = apiMaster;
   console.log(reviewsList);
 
@@ -24,6 +29,9 @@ const ReviewsFeed = ({
     Promise.resolve(setCurrentSort(newSort))
       .then(() => {
         updateReviewListState(reviewsList.product, 2, newSort);
+        {
+          setCurrentIndex(4);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -45,7 +53,19 @@ const ReviewsFeed = ({
     }
   };
 
-  const launchModal = () => {};
+  const handleClickAdd = () => {
+    setShowModal(true);
+    setCurrentModalView("Add");
+  };
+
+  const handleClickPhoto = () => {
+    setShowModal(true);
+    setCurrentModalView("photo");
+  };
+
+  const handleClose = () => {
+    setShowModal(false);
+  };
 
   const reader = new FileReader();
 
@@ -122,7 +142,25 @@ const ReviewsFeed = ({
                   <div>
                     {review.photos.map((photo) => {
                       return (
-                        <img className="photo-thumbnail" src={altImage}></img>
+                        <>
+                          {showModal === true ? (
+                            <Modal
+                              photo={altImage}
+                              currentModalView={currentModalView}
+                              updateReviewListState={updateReviewListState}
+                              productInfoData={productInfoData}
+                              showModal={showModal}
+                              handleClose={handleClose}
+                            />
+                          ) : (
+                            <></>
+                          )}
+                          <img
+                            className="photo-thumbnail"
+                            src={altImage}
+                            onClick={handleClickPhoto}
+                          ></img>
+                        </>
                       );
                     })}
                   </div>
@@ -163,14 +201,16 @@ const ReviewsFeed = ({
           <button className="load text-style-1" onClick={getMoreReviews}>
             More Reviews{" "}
           </button>
-          <button className="add text-style-1" onClick={launchModal}>
+          <button className="add text-style-1" onClick={handleClickAdd}>
             Add A Review +{" "}
           </button>
         </div>
       ) : (
-        <button className="load text-style-1" onClick={launchModal}>
-          Add A Review +{" "}
-        </button>
+        <>
+          <button className="load text-style-1" onClick={handleClickAdd}>
+            Add A Review +{" "}
+          </button>
+        </>
       )}
     </div>
   );

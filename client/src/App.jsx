@@ -22,7 +22,7 @@ const App = () => {
          TEAM <span><img className='sparrow' src={team_sparrow}></img></span> SPARROW
       </div>
       <Overview productStyles={productStyles} />
-      <RatingsAndReviews reviewMetadata={reviewMetadata} />
+      <RatingsAndReviews reviewMetadata={reviewMetadata} productInfoData={productInfoData}/>
     </>
   );
 };
