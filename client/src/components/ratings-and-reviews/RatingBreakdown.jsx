@@ -21,6 +21,8 @@ const RatingBreakdown = ({ reviewMetadata, reviewsList, totalReviews }) => {
           ></div>
         </div>
       </div>
+      <div className="ratingCount text-style-2">{reviewMetadata.ratings[5]}</div>
+
 
       <div className="star-count">
         <div className="clickable text-style-2" onClick={handleClickStarCount}>
@@ -37,6 +39,7 @@ const RatingBreakdown = ({ reviewMetadata, reviewsList, totalReviews }) => {
           ></div>
         </div>
       </div>
+      <div className="ratingCount text-style-2">{reviewMetadata.ratings[4]}</div>
 
       <div className="star-count">
         <div className="clickable text-style-2" onClick={handleClickStarCount}>
@@ -53,6 +56,7 @@ const RatingBreakdown = ({ reviewMetadata, reviewsList, totalReviews }) => {
           ></div>
         </div>
       </div>
+      <div className="ratingCount text-style-2">{reviewMetadata.ratings[3]}</div>
 
       <div className="star-count">
         <div className="clickable text-style-2" onClick={handleClickStarCount}>
@@ -70,6 +74,7 @@ const RatingBreakdown = ({ reviewMetadata, reviewsList, totalReviews }) => {
           ></div>
         </div>
       </div>
+      <div className="ratingCount text-style-2">{reviewMetadata.ratings[2]}</div>
 
       <div className="star-count">
         <div className="clickable text-style-2" onClick={handleClickStarCount}>
@@ -87,6 +92,7 @@ const RatingBreakdown = ({ reviewMetadata, reviewsList, totalReviews }) => {
           ></div>
         </div>
       </div>
+      <div className="ratingCount text-style-2">{reviewMetadata.ratings[1]}</div>
     </div>
   );
 };
