@@ -22,8 +22,20 @@ const Overview = () => {
       <div className='announcement'><em>SITE-WIDE ANNOUNCEMENT MESSAGE!</em> -- SALE / DISCOUNT <b>OFFER</b> -- <u>NEW PRODUCT HIGHLIGHT</u></div>
       <ImageGallery currentStyle={currentStyle} toggleExpanded={toggleExpanded} expandedView={expandedView} />
       <ProductInfo expandedView={expandedView} productInfo={productInfo} currentStyle={currentStyle} productStyles={productStyles} toggleStyle={toggleStyle} index={styleIndex} />
-      <div className='product-description'>Product Description</div>
-      <div className='product-details'>Description checkmarks</div>
+      <div className='product-description'>
+        <h4>{productInfo.slogan}</h4>
+        <p>{productInfo.description}</p>
+      </div>
+      <div className='product-details'>
+        <div className="details-border" />
+        <div className="details-list">
+          <ul>
+            {productInfo.features.map((feature) => (
+              <li><span className="check" />  {feature.value} {feature.feature}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
   
