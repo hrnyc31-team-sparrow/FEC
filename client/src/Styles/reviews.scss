@@ -1,12 +1,11 @@
 $font-stack: "Rubik", sans-serif;
 $primary-color: dimgrey;
-
 $title-text-size: 0.9em;
 $body-width: 80%;
 $text-size-1: 1em bold;
 $text-size-2: 0.7em;
 $padding-margin: 0.5em;
-
+$stars-color: rgb(255, 217, 0);
 //ratings & review container
 .wrapper {
   margin-top: 5vh;
@@ -16,16 +15,13 @@ $padding-margin: 0.5em;
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 1.5em 1fr;
-  background-color: lightcyan;
+
   padding: 10px;
   font-family: $font-stack;
   color: $primary-color;
   overflow: auto;
   max-height: 100vh;
 
-  div {
-    // background-color: rgba(255, 255, 255, 0.8);
-  }
   .title {
     grid-column: 1 / span 2;
     grid-row: 1;
@@ -49,7 +45,6 @@ $padding-margin: 0.5em;
   grid-template-rows: 1.5em 1fr;
   grid-gap: $padding-margin;
 
-
   .review-feed-container {
     overflow: auto;
     max-height: 70vh;
@@ -62,16 +57,22 @@ $padding-margin: 0.5em;
     border-bottom: solid $primary-color 0.5px;
     max-height: 400px;
   }
-  .text-style-1 {
-    font: $text-size-1 $font-stack;
-  }
 }
+
+.text-style-1 {
+  font: $text-size-1 $font-stack;
+}
+
 .clickable {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.margin-sides {
   margin-right: $padding-margin;
   margin-left: $padding-margin;
 }
+
 //review body
 .text-style-2 {
   font: $text-size-2 $font-stack;
@@ -101,11 +102,8 @@ $padding-margin: 0.5em;
   padding: 0.3em;
   height: fit-content;
 }
-.review-response {
-  font: $text-size-2 $font-stack;
-}
 
-.review-response-header {
+.review-response {
   font: $text-size-2 $font-stack;
 }
 
@@ -131,8 +129,10 @@ $padding-margin: 0.5em;
 #sorting {
   border: 0px;
   outline: 0px;
-  background-color: lightcyan;
-  font-family: "Rubik", sans-serif;
+  background-color: transparent;
+  font-family: $font-stack;
+  font-size: 1em;
+  color: dimgrey;
 }
 
 .loadOrAdd-container {
@@ -144,15 +144,16 @@ $padding-margin: 0.5em;
     padding: 1em;
     border: solid 0.1em;
     border-radius: 0;
-    background-color: lightcyan;
+    background-color: transparent;
     cursor: pointer;
   }
+
   .add {
     grid-column: 2;
     padding: 1em;
     border: solid 0.1em;
     border-radius: 0;
-    background-color: lightcyan;
+    background-color: transparent;
     margin-left: 1em;
     cursor: pointer;
   }
@@ -162,17 +163,18 @@ $padding-margin: 0.5em;
   border: 1px solid #ddd;
   padding: 5px;
   width: 200px;
-  background-color: lightcyan;
+  background-color: white
 }
+
 .photo-thumbnail:hover {
   box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
 
 .modal {
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  z-index: 2; /* Sit on top */
+  margin: auto;
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -181,25 +183,32 @@ $padding-margin: 0.5em;
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 10vh 80vh 10vh;
+  .modal-content {
+    grid-column: 1;
+    grid-row: 2;
+    background-color:white;
+    padding: 2em;
+    border: 1px solid #888;
+    align-self: center;
+    justify-self: center;
+  }
 }
 
 .display-block {
   display: block;
 }
 
-.display-none {
-  display: none;
-}
 /* Style the close button (span) */
 .close {
-  color: #aaaaaa;
+  color: dimgray;
   float: right;
+  padding-top: 0.3em;
+  padding-right: 0.3em;
   font-size: 28px;
   font-weight: bold;
 }
@@ -211,72 +220,192 @@ $padding-margin: 0.5em;
   cursor: pointer;
 }
 
-/* Three column layout */
+.user-input-container {
+  width: 70vh;
+  display: grid;
+  grid-gap: 0.5em;
+  grid-template-rows: 3em 1.5em 6em 2em 3em 1.5em 1.5em 2em 2em 2em;
+  overflow: auto;
+  justify-self: center;
+
+  .user-input-header {
+    grid-row: 1;
+    align-self: center;
+  }
+  .user-input-rating {
+    grid-row: 2;
+    align-self: center;
+  }
+  .user-input-recommend {
+    grid-row: 3;
+    align-self: center;
+  }
+  .user-input-summary {
+    grid-row: 4;
+    align-self: center;
+  }
+  .user-input-body {
+    grid-row: 5;
+    align-self: center;
+  }
+  .user-input-name {
+    grid-row: 6;
+    align-self: center;
+  }
+  .user-input-email {
+    grid-row: 7;
+    align-self: center;
+  }
+  .user-input-photos {
+    grid-row: 8;
+    align-self: center;
+  }
+  .user-input-characteristics {
+    grid-row: 9;
+    align-self: center;
+  }
+
+  .user-input-submit {
+    grid-row: 10;
+    align-self: center;
+    justify-self: end;
+  }
+  .input1 {
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    margin-left: $padding-margin;
+    width: 300px;
+  }
+
+  textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    font-family: $font-stack;
+    resize: none;
+  }
+  .submit {
+   float: right;
+   margin-right: $padding-margin;
+   margin-bottom: 1em;
+   border-radius: 4px;
+   border: 2px solid #ccc;
+   font-family: $font-stack;
+   color: $primary-color;
+  }
+  .chooseFile {
+    margin-left: $padding-margin;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+    font-family: $font-stack;
+    color: $primary-color;
+   }
+}
+
+//star rating breakdown
 .breakdown-container {
   display: grid;
   grid-template-columns: 15% 70% 15%;
   grid-template-rows: repeat(5, 1.5em);
-  margin-right: 1em;
-}
-.star-count {
-  grid-column: 1;
-  vertical-align: bottom;
-}
-
-.bar {
-  grid-column: 2;
   margin-right: 2em;
+
+  .star-count {
+    grid-column: 1;
+    align-self: center;
+  }
+
+  .bar-container {
+    grid-column: 2;
+    margin: $padding-margin;
+    background-color: lightgrey;
+    align-self: center;
+
+    .bar {
+      align-self: center;
+      height: 0.5em;
+      background-color: lightgreen;
+    }
+  }
+
+  .ratingCount {
+    grid-column: 3;
+    margin-right: 2em;
+    align-self: center;
+  }
+
+  .for5 {
+    grid-row: 1;
+  }
+  .for4 {
+    grid-row: 2;
+  }
+  .for3 {
+    grid-row: 3;
+  }
+  .for2 {
+    grid-row: 4;
+  }
+  .for1 {
+    grid-row: 5;
+  }
+}
+  .characteristics-container {
+    grid-column: 3;
+    margin: $padding-margin;
+    background-color: lightgrey;
+    align-self: center;
 }
 
-/* The bar container */
-.bar-container {
-  vertical-align: text-top;
-  margin: $padding-margin;
-  width: 100%;
-  background-color: lightgrey;
-  text-align: center;
-  color: white;
+/* use display:inline-flex to prevent whitespace issues. alternatively, you can put all the children of .rating-group on a single line */
+.rating-group {
+  display: inline-flex;
+  vertical-align: -15%;
 }
 
-/* Individual bars */
-.bar-5 {
-  grid-row: 1;
-  vertical-align: text-top;
-  margin-top: $padding-margin;
-  height: 0.5em;
-  background-color: lightgreen;
-}
-.bar-4 {
-  grid-row: 2;
-  vertical-align: text-top;
-  margin-top: $padding-margin;
-  height: 0.5em;
-  background-color: lightgreen;;
-}
-.bar-3 {
-  grid-row: 3;
-  vertical-align: text-top;
-  margin-top: $padding-margin;
-  height: 0.5em;
-  background-color: lightgreen;
-}
-.bar-2 {
-  grid-row: 4;
-  vertical-align: text-top;
-  margin-top: $padding-margin;
-  height: 0.5em;
-  background-color: lightgreen;
-}
-.bar-1 {
-  grid-row: 5;
-  vertical-align: text-top;
-  margin-top: $padding-margin;
-  height: 0.5em;
-  background-color: lightgreen;
+/* make hover effect work properly in IE */
+.rating__icon {
+  pointer-events: none;
 }
 
-.ratingCount {
-  grid-column: 3;
-  margin-right: 2em;
-  vertical-align: bottom;
+/* hide radio inputs */
+.rating__input {
+  position: absolute !important;
+  left: -9999px !important;
+}
+
+/* hide 'none' input from screenreaders */
+.rating__input--none {
+  display: none;
+}
+
+/* set icon padding and size */
+.rating__label {
+  cursor: pointer;
+  padding: 0 0.1em;
+  font-size: 15px;
+}
+
+/* set default star color */
+.rating__icon--star {
+  color: $stars-color;
+}
+
+/* if any input is checked, make its following siblings grey */
+.rating__input:checked ~ .rating__label .rating__icon--star {
+  color: #ddd;
+}
+
+/* make all stars orange on rating group hover */
+.rating-group:hover .rating__label .rating__icon--star {
+  color: $stars-color;
+}
+
+/* make hovered input's following siblings grey on hover */
+.rating__input:hover ~ .rating__label .rating__icon--star {
+  color: #ddd;
 }
