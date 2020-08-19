@@ -21,7 +21,7 @@ const ImageGallery = ({currentStyle, expandedView, toggleExpanded}) => {
   return (
     <div className={ expandedView ? "image-gallery expanded-image" : "image-gallery primary-image"}>
       <div className="image-container">
-        <img className={expandedView ? zoomView ? "main-image zoomed" : "main-image expanded" : "main-image default"} onClick={expandedView ? toggleZoom : toggleExpanded} src={currentPhoto.url} />
+        <img className={ expandedView ? zoomView ? "main-image zoomed" : "main-image expanded" : "main-image default"} onClick={expandedView ? toggleZoom : toggleExpanded} src={currentPhoto.url} />
         <div className="overlay-container">
           <ThumbnailGallery index={index} selectThumbnail={selectThumbnail} thumbnails={thumbnails} />
             <img 
