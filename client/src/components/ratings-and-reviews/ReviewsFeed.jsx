@@ -67,12 +67,26 @@ const ReviewsFeed = ({
     setShowModal(false);
   };
 
+  const displayModal = (photo) => {
+    return (
+      <Modal
+        photo={altImage}
+        currentModalView={currentModalView}
+        updateReviewListState={updateReviewListState}
+        productInfoData={productInfoData}
+        showModal={showModal}
+        handleClose={handleClose}
+      />
+    );
+  };
+
   const reader = new FileReader();
 
   return (
     <div className="reviews">
+      {showModal === true ? displayModal() : <></>}
       <div className="text-style-1">
-        {totalReviews} reviews, sorted by{" "}
+        {totalReviews} reviews, sorted by
         <select
           className="clickable"
           id="sorting"
@@ -128,9 +142,7 @@ const ReviewsFeed = ({
 
                 {review.response !== null ? (
                   <div className="review-response-container">
-                    <p className="review-response-header">
-                      Response from seller:
-                    </p>
+                    <p className="review-response">Response from seller:</p>
                     <p className="review-response">{review.response}</p>
                   </div>
                 ) : (
@@ -143,18 +155,7 @@ const ReviewsFeed = ({
                     {review.photos.map((photo) => {
                       return (
                         <>
-                          {showModal === true ? (
-                            <Modal
-                              photo={altImage}
-                              currentModalView={currentModalView}
-                              updateReviewListState={updateReviewListState}
-                              productInfoData={productInfoData}
-                              showModal={showModal}
-                              handleClose={handleClose}
-                            />
-                          ) : (
-                            <></>
-                          )}
+                          {showModal === true ? displayModal(photo) : <></>}
                           <img
                             className="photo-thumbnail"
                             src={altImage}
@@ -171,19 +172,29 @@ const ReviewsFeed = ({
                 <span className="text-style-2">
                   Helpful?{" "}
                   <span
-                    className="clickable "
+                    className="clickable margin-sides"
                     onClick={() => {
-                      handleClickHelpful(review.review_id, reviewsList.product);
+                      handleClickHelpful(
+                        review.review_id,
+                        reviewsList.product,
+                        currentIndex,
+                        currentSort
+                      );
                     }}
                   >
                     Yes
                   </span>
-                  ({review.helpfulness}) /<span className="clickable">No</span>{" "}
-                  |
+                  ({review.helpfulness}) /
+                  <span className="clickable margin-sides">No</span> |
                   <span
-                    className="clickable"
+                    className="clickable margin-sides"
                     onClick={() => {
-                      handleClickReport(review.review_id, reviewsList.product);
+                      handleClickReport(
+                        review.review_id,
+                        reviewsList.product,
+                        currentIndex,
+                        currentSort
+                      );
                     }}
                   >
                     Report
@@ -206,11 +217,9 @@ const ReviewsFeed = ({
           </button>
         </div>
       ) : (
-        <>
-          <button className="load text-style-1" onClick={handleClickAdd}>
-            Add A Review +{" "}
-          </button>
-        </>
+        <button className="load text-style-1" onClick={handleClickAdd}>
+          Add A Review +{" "}
+        </button>
       )}
     </div>
   );

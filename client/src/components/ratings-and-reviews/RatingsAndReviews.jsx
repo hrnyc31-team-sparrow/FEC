@@ -4,8 +4,7 @@ import ReviewsFeed from "./ReviewsFeed";
 import apiMaster from "../../apiMaster.js";
 // import reviewsListData from '../../../../mockData/reviewsListData'
 
-
-const RatingsAndReviews = ({ reviewMetadata, productInfoData}) => {
+const RatingsAndReviews = ({ reviewMetadata, productInfoData }) => {
   const [reviewsList, setReviewsList] = useState([]);
 
   const {
@@ -34,20 +33,20 @@ const RatingsAndReviews = ({ reviewMetadata, productInfoData}) => {
     updateReviewListState(1);
   }, []);
 
-  const handleClickHelpful = (review_id, product_id, newCount) => {
+  const handleClickHelpful = (review_id, product_id, newCount, sortBy) => {
     return updateReviewHelpfulness(review_id)
       .then(() => {
-        Promise.resolve(updateReviewListState(product_id));
+        Promise.resolve(updateReviewListState(product_id, newCount, sortBy));
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  const handleClickReport = (review_id, product_id, newCount) => {
+  const handleClickReport = (review_id, product_id, newCount, sortBy) => {
     return reportReview(review_id)
       .then(() => {
-        Promise.resolve(updateReviewListState(product_id));
+        Promise.resolve(updateReviewListState(product_id, newCount, sortBy));
       })
       .catch((err) => {
         console.log(err);
