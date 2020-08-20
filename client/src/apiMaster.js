@@ -1,23 +1,23 @@
 import axios from "axios";
 const url = "http://18.224.200.47";
 
-const getProductList = () => {
+export const getProductList = () => {
   return axios.get(`${url}/products/list`);
 };
 
-const getProduct = (product_id = 1) => {
+export const getProductInfo = (product_id = 1) => {
   return axios.get(`${url}/products/${product_id}`);
 };
 
-const getProductStyle = (product_id = 1) => {
+export const getProductStyle = (product_id = 1) => {
   return axios.get(`${url}/products/${product_id}/styles`);
 };
 
-const getRelatedProducts = (product_id = 1) => {
+export const getRelatedProducts = (product_id = 1) => {
   return axios.get(`${url}/products/${product_id}/related`);
 };
 
-const getReviewList = (
+export const getReviewList = (
   product_id = 1,
   page = 1,
   count = 2,
@@ -32,11 +32,11 @@ const getReviewList = (
   });
 };
 
-const getReviewMetadata = (product_id = 1) => {
+export const getReviewMetadata = (product_id = 1) => {
   return axios.get(`${url}/reviews/${product_id}/meta`);
 };
 
-const addReview = ({
+export const addReview = ({
   product_id = 1,
   rating,
   summary,
@@ -69,25 +69,15 @@ const addReview = ({
 
 };
 
-const updateReviewHelpfulness = (review_id) => {
+export const updateReviewHelpfulness = (review_id) => {
   return axios.put(`${url}/reviews/helpful/${review_id}`);
 };
 
-const reportReview = (review_id) => {
+export const reportReview = (review_id) => {
   return axios.put(`${url}/reviews/report/${review_id}`);
 };
 
-const apiMaster = {
-  getProductList,
-  getProduct,
-  getProductStyle,
-  getRelatedProducts,
-  getReviewList,
-  getReviewMetadata,
-  addReview,
-  updateReviewHelpfulness,
-  reportReview,
-};
+
 // const getCart = () => {
 //   return axios.get(`${url}/cart`)
 // }
@@ -95,4 +85,4 @@ const apiMaster = {
 // const addToCard = (sku_id) => {
 //   return axios.post('')
 // }
-export default apiMaster;
+export default { getProductInfo, getProductList, getProductStyle, getRelatedProducts, getReviewList, getReviewMetadata, addReview, updateReviewHelpfulness, reportReview };

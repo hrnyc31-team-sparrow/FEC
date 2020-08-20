@@ -1,10 +1,10 @@
-const reviewMetaDataReducer = (state = null , action) => {
+const reviewMetadataReducer = (state = {}, action) => {
   switch (action.type) {
     case 'UPDATE_META_DATA':
-      return action.reviewMetaData
+      return action.reviewMetadata;
     default:
       return state;
   }
 };
 
-export default reviewMetaDataReducer;
+export default reviewMetadataReducer;
