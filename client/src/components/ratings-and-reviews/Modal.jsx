@@ -154,23 +154,31 @@ class Modal extends React.Component {
       fitChar,
       valid,
     } = this.state;
-    const charObj = {};
-    charObj[sizeChar.id] = Number(sizeChar.value);
-    charObj[widthChar.id] = Number(widthChar.value);
-    charObj[comfortChar.id] = Number(comfortChar.value);
-    charObj[qualityChar.id] = Number(qualityChar.value);
-    charObj[lengthChar.id] = Number(lengthChar.value);
-    charObj[fitChar.id] = Number(fitChar.value);
-    console.log(rating);
-    console.log(summary);
-    console.log(body);
-    console.log(recommend);
-    console.log(name);
-    console.log(email);
-    console.log(photos);
+    var charObj = {[sizeChar.id]:Number(sizeChar.value),
+      [widthChar.id]: Number(widthChar.value),
+      [comfortChar.id]: Number(comfortChar.value),
+      [qualityChar.id]: Number(qualityChar.value),
+      [lengthChar.id]: Number(lengthChar.value),
+      [fitChar.id]:Number(fitChar.value)}
+
+    // charObj[sizeChar.id] = Number(sizeChar.value);
+    // charObj[widthChar.id] = Number(widthChar.value);
+    // charObj[comfortChar.id] = Number(comfortChar.value);
+    // charObj[qualityChar.id] = Number(qualityChar.value);
+    // charObj[lengthChar.id] = Number(lengthChar.value);
+    // charObj[fitChar.id] = Number(fitChar.value);
+    // console.log(rating);
+    // console.log(summary);
+    // console.log(body);
+    // console.log(recommend);
+    // console.log(name);
+    // console.log(email);
+    // console.log(photos);
     console.log(charObj);
+    const id = this.props.productInfoData.id;
     if (valid === true) {
       addReview({
+        product_id: id,
         rating,
         summary,
         body,
@@ -178,13 +186,13 @@ class Modal extends React.Component {
         name,
         email,
         photos,
-        charObj,
+        characteristics: charObj,
       })
         .then(() => {
           this.props.handleClose();
           this.setState({
-            invalidMessage: []
-          })
+            invalidMessage: [],
+          });
         })
         .catch((err) => {
           console.log(err);
