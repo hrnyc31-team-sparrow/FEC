@@ -6,7 +6,7 @@ import AddToCart from './AddToCart';
 import reviewMetadataData from "../../../../../mockData/reviewMetadataData";
 
 
-const ProductInfo = ({expandedView, productStyles, currentStyle, toggleStyle, index}) => {
+const ProductInfo = ({expandedView, productStyles, toggleStyle, index, currentStyle}) => {
     const productInfo = useSelector(state => state.productInfo);
     return (
         <div className={ expandedView ? "product-information info-hidden" : "product-information info-primary"}>
@@ -15,10 +15,10 @@ const ProductInfo = ({expandedView, productStyles, currentStyle, toggleStyle, in
                     <Rating reviewMetadata={reviewMetadataData} />
                     <p style={{marginBottom: "0px", marginTop: "5px"}}>CATEGORY</p>
                     <h1 style={{marginTop: "5px"}}>{productInfo.name}</h1>
-                    <p style={{marginTop: "10px"}}>${currentStyle.original_price}</p>
+                    <p style={{marginTop: "10px"}}>${currentStyle ? `${currentStyle.original_price}`: ''}</p>
                 </div>
                 <div className="product-styles">
-                    <p style={{marginBottom: "3px"}}><b>STYLE > </b>{currentStyle.name.toUpperCase()}</p>
+                    <p style={{marginBottom: "3px"}}><b>STYLE > </b>{currentStyle ? `${currentStyle.name.toUpperCase()}`: ''}</p>
                     <Styles productStyles={productStyles} toggleStyle={toggleStyle} index={index} />
                 </div>
                 <div className="add-cart">

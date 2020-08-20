@@ -2,6 +2,7 @@ import {
   getProductInfo,
   getProductList,
   getReviewMetadata,
+  getProductStyles
 } from "../apiMaster.js";
 
 // state:
@@ -18,10 +19,53 @@ const updateProductInfo = (productInfo) => ({
   productInfo: productInfo,
 });
 
-export const updateProductList = (productList) => ({
+export const handleProductUpdate = (product_id) => {
+  return (dispatch) => {
+    getProductInfo(product_id)
+      .then(({ data }) => {
+        console.log('updating product info ', data);
+        dispatch(updateProductInfo(data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+const updateProductList = (productList) => ({
   type: "UPDATE_PRODUCT_LIST",
   productList: productList,
 });
+
+export const handleProductListUpdate = (product_id = 1) => {
+
+  return (dispatch) => {
+    getProductList(product_id)
+      .then(({ data }) => {
+
+        dispatch(updateProductList(data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+const updateProductStyles = (productStyles) => ({
+  type: "UPDATE_PRODUCT_STYLES",
+  productStyles: productStyles,
+});
+
+export const handleProductStylesUpdate = (product_id) => {
+  return (dispatch) => {
+    getProductStyles(product_id)
+      .then(({data}) => {
+        console.log('get product styles ', data.results);
+        dispatch(updateProductStyles(data.results));
+      })
+      .catch(err => console.log(err));
+  };
+};
 
 //after adding or deleting a favorite, get newFavorites
 export const updateFavorites = (newFavorites) => ({
@@ -46,37 +90,14 @@ export const handleReviewMetadataUpdate = (product_id) => {
       .catch((err) => console.log(err));
   };
 };
-export const handleProductUpdate = (product_id) => {
-  console.log("inside handleProduct update");
-  return (dispatch) => {
-    getProductInfo(product_id)
-      .then(({ data }) => {
-        console.log("redux productInfo", data);
-        dispatch(updateProductInfo(data));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-};
 
-export const handleProductListUpdate = (product_id = 1) => {
-  console.log("inside handleProductList update");
-  return (dispatch) => {
-    getProductList(product_id)
-      .then(({ data }) => {
-        console.log("redux productList", data);
-        dispatch(updateProductList(data));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-};
+
+
 
 export default {
   handleProductUpdate,
   handleProductListUpdate,
   handleReviewMetadataUpdate,
+  handleProductStylesUpdate,
 };
 // {handleProductUpdate, updateMetaData, updateFavorites, updateCurrProduct}

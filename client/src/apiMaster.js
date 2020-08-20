@@ -5,11 +5,11 @@ export const getProductList = () => {
   return axios.get(`${url}/products/list`);
 };
 
-export const getProductInfo = (product_id = 1) => {
+export const getProductInfo = (product_id) => {
   return axios.get(`${url}/products/${product_id}`);
 };
 
-export const getProductStyle = (product_id = 1) => {
+export const getProductStyles = (product_id = 1) => {
   return axios.get(`${url}/products/${product_id}/styles`);
 };
 
@@ -85,4 +85,4 @@ export const reportReview = (review_id) => {
 // const addToCard = (sku_id) => {
 //   return axios.post('')
 // }
-export default { getProductInfo, getProductList, getProductStyle, getRelatedProducts, getReviewList, getReviewMetadata, addReview, updateReviewHelpfulness, reportReview };
+export default { getProductInfo, getProductList, getProductStyles, getRelatedProducts, getReviewList, getReviewMetadata, addReview, updateReviewHelpfulness, reportReview };

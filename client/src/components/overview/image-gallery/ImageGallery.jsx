@@ -10,10 +10,12 @@ const ImageGallery = ({currentStyle, expandedView, toggleExpanded}) => {
   const toggleZoom = () => setZoom(!zoomView);
   
   useEffect(() => {
+    // setCurrentPhoto(Object.keys(currentStyle).length ? currentStyle.photos[index] : null);
     setCurrentPhoto(currentStyle.photos[index]);
   }, [currentStyle, index]);
 
   useEffect(() => {
+    // setThumbnails(Object.keys(currentStyle).length ? currentStyle.photos : null);
     setThumbnails(currentStyle.photos);
   }, [currentStyle]);
 
