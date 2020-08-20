@@ -14,7 +14,7 @@ import { handleProductUpdate, handleProductListUpdate, handleReviewMetadataUpdat
 const App = () => {
   const productInfo = useSelector(state => state.productInfo);
   const productsList = useSelector(state => state.productsList);
-  // const reviewMetadata = useSelector(state => state.reviewMetadata);
+  const reviewMetadata = useSelector(state => state.reviewMetadata);
   const [productStyles, setProductStyles] = useState(productStylesData);
   const [reviewMetadata1, setReviewMetadata1] = useState(reviewMetadataData);
   const dispatch = useDispatch();
@@ -23,6 +23,7 @@ const App = () => {
     dispatch(handleProductUpdate());
     dispatch(handleProductListUpdate());
     dispatch(handleReviewMetadataUpdate());
+    console.log(reviewMetadata);
   }, []);
 
   return (
@@ -31,7 +32,7 @@ const App = () => {
          TEAM <span><img className='sparrow' src={team_sparrow}></img></span> SPARROW
       </div>
       <Overview productStyles={productStyles} />
-      <RatingsAndReviews productInfoData={productInfoData} reviewMetadata={reviewMetadata1}/>
+      <RatingsAndReviews productInfoData={productInfoData}reviewMetadata={reviewMetadata1} />
     </>
   );
 };
