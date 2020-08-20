@@ -3,6 +3,7 @@ import ImageGallery from './image-gallery/ImageGallery.jsx';
 import productStylesData from '../../../../mockData/productStylesData';
 import ProductInfo from './product-info/ProductInfo.jsx';
 import productInfoData from '../../../../mockData/productInfoData';
+import { useSelector } from 'react-redux';
 
 const Overview = () => {
   const [productStyles, setProductStyles] = useState(productStylesData.results);
@@ -12,6 +13,7 @@ const Overview = () => {
   const [productInfo, setProductInfo] = useState(productInfoData);
   const toggleExpanded = () => resizeView(!expandedView);
   const toggleStyle = (value) => setStyleIndex(value);
+  const reviewMetadata = useSelector(state => state.reviewMetadata);
 
   useEffect(() => {
     setCurrentStyle(productStyles[styleIndex]);
@@ -23,7 +25,7 @@ const Overview = () => {
       <ImageGallery currentStyle={currentStyle} toggleExpanded={toggleExpanded} expandedView={expandedView} />
       <ProductInfo expandedView={expandedView} productInfo={productInfo} currentStyle={currentStyle} productStyles={productStyles} toggleStyle={toggleStyle} index={styleIndex} />
       <div className='product-description'>
-        <h4>{productInfo.slogan}</h4>
+      <h4>{productInfo.slogan} Metadata Id: {reviewMetadata.product_id}</h4>
         <p>{productInfo.description}</p>
       </div>
       <div className='product-details'>
@@ -36,6 +38,7 @@ const Overview = () => {
           </ul>
         </div>
       </div>
+      
     </div>
   );
   

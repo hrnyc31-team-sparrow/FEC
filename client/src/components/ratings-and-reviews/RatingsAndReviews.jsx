@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import Ratings from "./Ratings";
 import ReviewsFeed from "./ReviewsFeed";
 import apiMaster from "../../apiMaster.js";
+import { useSelector } from 'react-redux';
 // import reviewsListData from '../../../../mockData/reviewsListData'
 
-const RatingsAndReviews = ({ reviewMetadata, productInfoData }) => {
+const RatingsAndReviews = ({ productInfoData, reviewMetadata}) => {
   const [reviewsList, setReviewsList] = useState([]);
+  const reviewMetadataRedux = useSelector(state => state.reviewMetadata);
 
   const {
     getReviewList,
@@ -14,15 +16,13 @@ const RatingsAndReviews = ({ reviewMetadata, productInfoData }) => {
     reportReview,
   } = apiMaster;
 
-  const ratings = reviewMetadata.ratings;
-  const totalReviews =
-    ratings[1] + ratings[2] + ratings[3] + ratings[4] + ratings[5];
+  
+  
 
   const updateReviewListState = (id, newCount, sortBy) => {
     return getReviewList(id, 1, newCount, sortBy)
       .then(({ data }) => {
         setReviewsList(data);
-        console.log(data);
       })
       .catch((err) => {
         console.log(err);
@@ -55,18 +55,18 @@ const RatingsAndReviews = ({ reviewMetadata, productInfoData }) => {
 
   return (
     <div className="wrapper ratings-and-reviews-container">
-      <div className="title">RATINGS & REVIEWS</div>
+      <div className="title">RATINGS & REVIEWS ReduxMeta: {reviewMetadataRedux.product_id}</div>
       <Ratings
         reviewMetadata={reviewMetadata}
         reviewsList={reviewsList}
-        totalReviews={totalReviews}
+        
       />
       <ReviewsFeed
         reviewMetadata={reviewMetadata}
         reviewsList={reviewsList}
         handleClickHelpful={handleClickHelpful}
         handleClickReport={handleClickReport}
-        totalReviews={totalReviews}
+        
         updateReviewListState={updateReviewListState}
         productInfoData={productInfoData}
       />

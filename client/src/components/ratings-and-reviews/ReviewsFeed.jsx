@@ -21,7 +21,7 @@ const ReviewsFeed = ({
   const [currentModalView, setCurrentModalView] = useState("photo");
 
   const { addReview } = apiMaster;
-  console.log(reviewsList);
+  
 
   const handleSortChange = (event) => {
     event.preventDefault();
