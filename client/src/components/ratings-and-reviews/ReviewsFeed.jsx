@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import StarRating from "./StarRating";
 import moment from "moment";
-import apiMaster from "../../apiMaster.js";
+import { addReview }  from "../../apiMaster.js";
 import altImage from "../../../dist/lib/altImage.jpg";
 import Modal from "./Modal";
 
@@ -19,9 +19,6 @@ const ReviewsFeed = ({
   const [currentIndex, setCurrentIndex] = useState(4);
   const [showModal, setShowModal] = useState(false);
   const [currentModalView, setCurrentModalView] = useState("photo");
-
-  const { addReview } = apiMaster;
-  console.log(reviewsList);
 
   const handleSortChange = (event) => {
     event.preventDefault();
@@ -70,7 +67,7 @@ const ReviewsFeed = ({
   const displayModal = (photo) => {
     return (
       <Modal
-        photo={altImage}
+        photo={photo}
         currentModalView={currentModalView}
         updateReviewListState={updateReviewListState}
         productInfoData={productInfoData}
@@ -158,7 +155,7 @@ const ReviewsFeed = ({
                           {showModal === true ? displayModal(photo) : <></>}
                           <img
                             className="photo-thumbnail"
-                            src={altImage}
+                            src={photo}
                             onClick={handleClickPhoto}
                           ></img>
                         </>

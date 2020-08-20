@@ -47,6 +47,15 @@ const addReview = ({
   photos,
   characteristics,
 }) => {
+  console.log(
+    rating,
+    summary,
+    body,
+    recommend,
+    name,
+    email,
+    photos,
+    characteristics)
   return axios.post(`${url}/reviews/${product_id}`, {
     rating,
     summary,
@@ -57,6 +66,7 @@ const addReview = ({
     photos,
     characteristics,
   });
+
 };
 
 const updateReviewHelpfulness = (review_id) => {
