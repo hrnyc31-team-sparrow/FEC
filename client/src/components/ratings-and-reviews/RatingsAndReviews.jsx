@@ -1,23 +1,26 @@
 import React, { useState, useEffect } from "react";
 import Ratings from "./Ratings";
 import ReviewsFeed from "./ReviewsFeed";
-import apiMaster from "../../apiMaster.js";
-import { useSelector } from 'react-redux';
-// import reviewsListData from '../../../../mockData/reviewsListData'
+import {
+  getReviewList,
+  getReviewMetadata,
+  updateReviewHelpfulness,
+  reportReview,
+} from "../../apiMaster.js";
+//import { useSelector } from "react-redux";
 
-const RatingsAndReviews = ({ productInfoData, reviewMetadata}) => {
+
+const RatingsAndReviews = ({ productInfoData, reviewMetadata }) => {
   const [reviewsList, setReviewsList] = useState([]);
-  const reviewMetadataRedux = useSelector(state => state.reviewMetadata);
+  // const reviewMetadata = useSelector((state) => state.reviewMetadata);
 
-  const {
-    getReviewList,
-    getReviewMetadata,
-    updateReviewHelpfulness,
-    reportReview,
-  } = apiMaster;
+  useEffect(() => {
+    updateReviewListState(1);
+  }, []);
 
-  
-  
+  const ratings = reviewMetadata.ratings;
+  const totalReviews =
+    ratings[1] + ratings[2] + ratings[3] + ratings[4] + ratings[5];
 
   const updateReviewListState = (id, newCount, sortBy) => {
     return getReviewList(id, 1, newCount, sortBy)
@@ -29,9 +32,7 @@ const RatingsAndReviews = ({ productInfoData, reviewMetadata}) => {
       });
   };
 
-  useEffect(() => {
-    updateReviewListState(1);
-  }, []);
+
 
   const handleClickHelpful = (review_id, product_id, newCount, sortBy) => {
     return updateReviewHelpfulness(review_id)
@@ -55,18 +56,18 @@ const RatingsAndReviews = ({ productInfoData, reviewMetadata}) => {
 
   return (
     <div className="wrapper ratings-and-reviews-container">
-      <div className="title">RATINGS & REVIEWS ReduxMeta: {reviewMetadataRedux.product_id}</div>
+      <div className="title">RATINGS & REVIEWS</div>
       <Ratings
         reviewMetadata={reviewMetadata}
         reviewsList={reviewsList}
-        
+        totalReviews={totalReviews}
       />
       <ReviewsFeed
         reviewMetadata={reviewMetadata}
         reviewsList={reviewsList}
         handleClickHelpful={handleClickHelpful}
         handleClickReport={handleClickReport}
-        
+        totalReviews={totalReviews}
         updateReviewListState={updateReviewListState}
         productInfoData={productInfoData}
       />

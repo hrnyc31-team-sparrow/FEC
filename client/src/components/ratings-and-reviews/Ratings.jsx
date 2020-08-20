@@ -1,26 +1,23 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import StarRating from "./StarRating";
 import RatingBreakdown from "./RatingBreakdown";
-const api = "http://18.224.200.47/";
 
-const Rating = ({ reviewMetadata, reviewsList, }) => {
- const displayAverageRating = () => {
-   return
-     (reviewMetadata.ratings[1] +
-       reviewMetadata.ratings[2] * 2 +
-       reviewMetadata. ratings[3] * 3 +
-       reviewMetadata.ratings[4] * 4 +
-       reviewMetadata.ratings[5] * 5) /
-       reviewMetadata.ratings['1'] + reviewMetadata.ratings['2'] + reviewMetadata.ratings['3'] + reviewMetadata.ratings['4'] + reviewMetadata.ratings['5'];
- }
-  //const width = (averageRating / 5) * 100;
+const Rating = ({ reviewMetadata, reviewsList, totalReviews }) => {
+  const ratings = reviewMetadata.ratings;
+  const averageRating =
+    (ratings[1] +
+      ratings[2] * 2 +
+      ratings[3] * 3 +
+      ratings[4] * 4 +
+      ratings[5] * 5) /
+    totalReviews;
+  const width = (averageRating / 5) * 100;
 
   return (
     <div className="ratings">
-      <span className="average-rating">{displayAverageRating()}</span>
+      <span className="average-rating">{averageRating}</span>
       <span className="vertical-align">
-        <StarRating width={(displayAverageRating()/5)*100} />
+        <StarRating width={width} />
       </span>
       <br />
       <p className='text-style-1' >
@@ -33,6 +30,7 @@ const Rating = ({ reviewMetadata, reviewsList, }) => {
       </p>
       <RatingBreakdown
         reviewMetadata={reviewMetadata}
+        totalReviews={totalReviews}
         reviewsList={reviewsList}
       />
     </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import apiMaster from "../../apiMaster.js";
 
-const RatingBreakdown = ({ reviewMetadata, reviewsList }) => {
+const RatingBreakdown = ({ reviewMetadata, reviewsList, totalReviews }) => {
   const handleClickStarCount = () => {};
 
   return (
@@ -17,7 +17,7 @@ const RatingBreakdown = ({ reviewMetadata, reviewsList }) => {
         <div
           className="for5 bar"
           style={{
-            width: (reviewMetadata.ratings[5] / reviewMetadata.ratings['1'] + reviewMetadata.ratings['2'] + reviewMetadata.ratings['3'] + reviewMetadata.ratings['4'] + reviewMetadata.ratings['5']) * 100 + "%",
+            width: (reviewMetadata.ratings[5] / totalReviews) * 100 + "%",
           }}
         ></div>
       </div>
@@ -35,7 +35,7 @@ const RatingBreakdown = ({ reviewMetadata, reviewsList }) => {
         <div
           className="bar for4"
           style={{
-            width: (reviewMetadata.ratings[4] / reviewMetadata.ratings['1'] + reviewMetadata.ratings['2'] + reviewMetadata.ratings['3'] + reviewMetadata.ratings['4'] + reviewMetadata.ratings['5']) * 100 + "%",
+            width: (reviewMetadata.ratings[4] / totalReviews) * 100 + "%",
           }}
         ></div>
       </div>
@@ -53,7 +53,7 @@ const RatingBreakdown = ({ reviewMetadata, reviewsList }) => {
         <div
           className="bar for3"
           style={{
-            width: (reviewMetadata.ratings[3] / (reviewMetadata.ratings['1'] + reviewMetadata.ratings['2'] + reviewMetadata.ratings['3'] + reviewMetadata.ratings['4'] + reviewMetadata.ratings['5'])) * 100 + "%"
+            width: (reviewMetadata.ratings[3] / totalReviews) * 100 + "%",
           }}
         ></div>
       </div>
@@ -71,7 +71,7 @@ const RatingBreakdown = ({ reviewMetadata, reviewsList }) => {
         <div
           className="bar for2"
           style={{
-            width: (reviewMetadata.ratings[2] / (reviewMetadata.ratings['1'] + reviewMetadata.ratings['2'] + reviewMetadata.ratings['3'] + reviewMetadata.ratings['4'] + reviewMetadata.ratings['5'])) * 100 + "%",
+            width: (reviewMetadata.ratings[2] / totalReviews) * 100 + "%",
           }}
         ></div>
       </div>
@@ -90,7 +90,7 @@ const RatingBreakdown = ({ reviewMetadata, reviewsList }) => {
         <div
           className="bar for1"
           style={{
-            width: (reviewMetadata.ratings[1] / reviewMetadata.ratings['1'] + reviewMetadata.ratings['2'] + reviewMetadata.ratings['3'] + reviewMetadata.ratings['4'] + reviewMetadata.ratings['5']) * 100 + "%",
+            width: (reviewMetadata.ratings[1] / totalReviews) * 100 + "%",
           }}
         ></div>
       </div>
