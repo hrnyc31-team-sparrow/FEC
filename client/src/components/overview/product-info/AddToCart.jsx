@@ -38,7 +38,7 @@ const AddToCart = ({productStyles, index}) => {
         </div>
         <div className="select-quantity-container">
           <select className="select-quantity">
-            {quantityDefault.map((num, i) => (
+            {quantity && quantity.map((num, i) => (
               <option>{num}</option>
             ))}
           </select>
