@@ -12,7 +12,7 @@ const ProductInfo = ({expandedView, productStyles, toggleStyle, index, currentSt
         <div className={ expandedView ? "product-information info-hidden" : "product-information info-primary"}>
             <div className="product-info-container">
                 <div className="expanded-name">
-                    <Rating reviewMetadata={reviewMetadataData} />
+                    <Rating />
                     <p style={{marginBottom: "0px", marginTop: "5px"}}>CATEGORY</p>
                     <h1 style={{marginTop: "5px"}}>{productInfo.name}</h1>
                     <p style={{marginTop: "10px"}}>${currentStyle ? `${currentStyle.original_price}`: ''}</p>

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Styles = ({productStyles, index, toggleStyle}) => (
     <div className="style-gallery">
-        {productStyles.map((style, i) => (
+        {productStyles.length && productStyles.map((style, i) => (
             <div className="style-container" key={i}>
                 
                 <img value={i} onClick={() => toggleStyle(i)} className="style-image" src={style.photos[0].thumbnail_url} />
