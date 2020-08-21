@@ -177,13 +177,15 @@ class Modal extends React.Component {
         characteristics: charObj,
       })
         .then(() => {
-          this.props.handleClose();
-          this.setState({
-            invalidMessage: [],
-          });
+          this.props.updateReviewListState(
+            id,
+            this.props.totalReviews,
+            this.props.currentSort
+          );
+          this.props.updateReviewMetadataState(id);
         })
         .then(() => {
-          this.props.updateReviewListState(this.props.reviewsList.product, this.props.currentIndex, this.props.currentSort);
+          this.handleClickClose();
         })
         .catch((err) => {
           console.log(err);
