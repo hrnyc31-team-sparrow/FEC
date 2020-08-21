@@ -10,7 +10,6 @@ import { handleProductUpdate, handleProductListUpdate, handleReviewMetadataUpdat
 
 const App = () => {
   const reviewMetadata = useSelector(state => state.reviewMetadata);
-  const [reviewMetadata1, setReviewMetadata1] = useState(reviewMetadataData);
   const productId = useSelector(state => state.productId);
   const dispatch = useDispatch();
 
@@ -21,13 +20,14 @@ const App = () => {
     console.log(reviewMetadata);
   }, [productId]);
 
+
   return (
     <>
       <div className="header">
          TEAM <span><img className='sparrow' src={team_sparrow}></img></span> SPARROW
       </div>
       <Overview />
-      <RatingsAndReviews productInfoData={productInfoData} reviewMetadata={reviewMetadataData} />
+      <RatingsAndReviews productInfoData={productInfoData} />
     </>
   );
 };

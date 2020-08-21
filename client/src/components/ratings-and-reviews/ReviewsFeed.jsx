@@ -151,10 +151,10 @@ const ReviewsFeed = ({
                       {review.photos.map((photo) => {
                         return (
                           <>
-                            {showModal === true ? displayModal(photo) : <></>}
+                            {showModal === true ? displayModal(altImage) : <></>}
                             <img
                               className="photo-thumbnail"
-                              src={photo.url}
+                              src={altImage}
                               onClick={handleClickPhoto}
                             ></img>
                           </>

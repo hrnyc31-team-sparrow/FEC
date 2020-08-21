@@ -5,17 +5,13 @@ import {
   getProductStyles
 } from "../apiMaster.js";
 
-// state:
-// {
-//   currProduct: {}
-//   sessionToken:
-//   favorites: []
-//   reviewMetaData: {} //
-// }
+
 export const updateProductId = (productId) => ({
   type: "UPDATE_PRODUCT_ID",
   productId: productId,
 });
+
+
 
 //after clicking on another product, update the main product
 const updateProductInfo = (productInfo) => ({
@@ -36,12 +32,14 @@ export const handleProductUpdate = (product_id) => {
   };
 };
 
+
+
 const updateProductList = (productList) => ({
   type: "UPDATE_PRODUCT_LIST",
   productList: productList,
 });
 
-export const handleProductListUpdate = (product_id = 1) => {
+export const handleProductListUpdate = (product_id) => {
 
   return (dispatch) => {
     getProductList(product_id)
