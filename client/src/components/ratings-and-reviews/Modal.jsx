@@ -2,7 +2,7 @@ import React from "react";
 import apiMaster from "../../apiMaster.js";
 import StarRating from "./StarRating";
 import Recommend from "./Recommend";
-import Characteristics from "./Characteristics";
+import CharacteristicsUserInput from "./CharacteristicsUserInput";
 const { addReview } = apiMaster;
 
 class Modal extends React.Component {
@@ -16,14 +16,14 @@ class Modal extends React.Component {
       name: "",
       email: "",
       photos: [],
-      sizeChar: { id: 36, value: 0 },
-      widthChar: { id: 36, value: 0 },
-      comfortChar: { id: 36, value: 0 },
-      qualityChar: { id: 36, value: 0 },
-      lengthChar: { id: 36, value: 0 },
-      fitChar: { id: 36, value: 0 },
+      sizeChar: { id: 0, value: 0 },
+      widthChar: { id: 0, value: 0 },
+      comfortChar: { id: 0, value: 0 },
+      qualityChar: { id: 0, value: 0 },
+      lengthChar: { id: 0, value: 0 },
+      fitChar: { id: 0, value: 0 },
       valid: true,
-      lastId: 36,
+      lastId: 136,
       invalidMessage: [],
     };
     this.handleSubmitForm = this.handleSubmitForm.bind(this);
@@ -154,12 +154,14 @@ class Modal extends React.Component {
       fitChar,
       valid,
     } = this.state;
-    var charObj = {[sizeChar.id]:Number(sizeChar.value),
+    var charObj = {
+      [sizeChar.id]: Number(sizeChar.value),
       [widthChar.id]: Number(widthChar.value),
       [comfortChar.id]: Number(comfortChar.value),
       [qualityChar.id]: Number(qualityChar.value),
       [lengthChar.id]: Number(lengthChar.value),
-      [fitChar.id]:Number(fitChar.value)}
+      [fitChar.id]: Number(fitChar.value),
+    };
 
     // charObj[sizeChar.id] = Number(sizeChar.value);
     // charObj[widthChar.id] = Number(widthChar.value);
@@ -193,6 +195,9 @@ class Modal extends React.Component {
           this.setState({
             invalidMessage: [],
           });
+        })
+        .then(() => {
+          this.props.updateReviewListState(this.props.reviewsList.product, this.props.currentIndex, this.props.currentSort);
         })
         .catch((err) => {
           console.log(err);
@@ -351,7 +356,7 @@ class Modal extends React.Component {
                     recommend={this.state.recommend}
                   />
                   <br />
-                  <Characteristics
+                  <CharacteristicsUserInput
                     sizeChar={sizeChar}
                     widthChar={widthChar}
                     comfortChar={comfortChar}

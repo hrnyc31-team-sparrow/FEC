@@ -9,21 +9,22 @@ import {
 } from "../../apiMaster.js";
 //import { useSelector } from "react-redux";
 
-
 const RatingsAndReviews = ({ productInfoData, reviewMetadata }) => {
   const [reviewsList, setReviewsList] = useState([]);
+  const [currentSort, setCurrentSort] = useState("relevant");
+  const [currentIndex, setCurrentIndex] = useState(1);
   // const reviewMetadata = useSelector((state) => state.reviewMetadata);
-
-  useEffect(() => {
-    updateReviewListState(1);
-  }, []);
 
   const ratings = reviewMetadata.ratings;
   const totalReviews =
     ratings[1] + ratings[2] + ratings[3] + ratings[4] + ratings[5];
 
+  useEffect(() => {
+    updateReviewListState(productInfoData.product_id, totalReviews);
+  }, []);
+
   const updateReviewListState = (id, newCount, sortBy) => {
-    return getReviewList(id, 1, newCount, sortBy)
+    return getReviewList(id, newCount, sortBy)
       .then(({ data }) => {
         setReviewsList(data);
       })
@@ -31,8 +32,6 @@ const RatingsAndReviews = ({ productInfoData, reviewMetadata }) => {
         console.log(err);
       });
   };
-
-
 
   const handleClickHelpful = (review_id, product_id, newCount, sortBy) => {
     return updateReviewHelpfulness(review_id)
@@ -61,6 +60,9 @@ const RatingsAndReviews = ({ productInfoData, reviewMetadata }) => {
         reviewMetadata={reviewMetadata}
         reviewsList={reviewsList}
         totalReviews={totalReviews}
+        setReviewsList={setReviewsList}
+        updateReviewListState={updateReviewListState}
+        productInfoData={productInfoData}
       />
       <ReviewsFeed
         reviewMetadata={reviewMetadata}
@@ -70,6 +72,10 @@ const RatingsAndReviews = ({ productInfoData, reviewMetadata }) => {
         totalReviews={totalReviews}
         updateReviewListState={updateReviewListState}
         productInfoData={productInfoData}
+        currentIndex={currentIndex}
+        currentSort={currentSort}
+        setCurrentIndex={setCurrentIndex}
+        setCurrentSort={setCurrentSort}
       />
     </div>
   );
