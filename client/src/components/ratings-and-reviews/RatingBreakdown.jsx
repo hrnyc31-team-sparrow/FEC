@@ -74,7 +74,15 @@ const RatingBreakdown = ({
   const viewAllButtonDisplay = () => {
     let allTrue = Object.values(filterStars).filter((e) => e === true).length;
     if (allTrue === 5) {
-      return <button onClick={handleClickRemoveFilterRating}>View All</button>;
+      return (
+        <button
+          margin-sides
+          text-style-2
+          onClick={handleClickRemoveFilterRating}
+        >
+          View All
+        </button>
+      );
     }
   };
   return (

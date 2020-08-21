@@ -163,20 +163,6 @@ class Modal extends React.Component {
       [fitChar.id]: Number(fitChar.value),
     };
 
-    // charObj[sizeChar.id] = Number(sizeChar.value);
-    // charObj[widthChar.id] = Number(widthChar.value);
-    // charObj[comfortChar.id] = Number(comfortChar.value);
-    // charObj[qualityChar.id] = Number(qualityChar.value);
-    // charObj[lengthChar.id] = Number(lengthChar.value);
-    // charObj[fitChar.id] = Number(fitChar.value);
-    // console.log(rating);
-    // console.log(summary);
-    // console.log(body);
-    // console.log(recommend);
-    // console.log(name);
-    // console.log(email);
-    // console.log(photos);
-    console.log(charObj);
     const id = this.props.productInfoData.id;
     if (valid === true) {
       addReview({

@@ -1,29 +1,54 @@
 import React, { useState, useEffect } from "react";
 import Ratings from "./Ratings";
 import ReviewsFeed from "./ReviewsFeed";
+import reviewMetadataData from "../../../../mockData/reviewMetadataData"
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getReviewList,
   getReviewMetadata,
   updateReviewHelpfulness,
   reportReview,
 } from "../../apiMaster.js";
-//import { useSelector } from "react-redux";
+import { handleReviewMetadataUpdate } from "../../actions";
 
-const RatingsAndReviews = ({ productInfoData, reviewMetadata }) => {
+
+const RatingsAndReviews = ({ productInfoData }) => {
   const [reviewsList, setReviewsList] = useState([]);
   const [currentSort, setCurrentSort] = useState("relevant");
   const [currentIndex, setCurrentIndex] = useState(1);
-  // const reviewMetadata = useSelector((state) => state.reviewMetadata);
+  const [reviewMetadata, setReviewMetadata] = useState(reviewMetadataData);
+  // const reviewMetadata = useSelector(state => state.reviewMetadata);
+  const dispatch = useDispatch();
 
-  const ratings = reviewMetadata.ratings;
+
   const totalReviews =
-    ratings[1] + ratings[2] + ratings[3] + ratings[4] + ratings[5];
+        reviewMetadata.ratings[1] +
+        reviewMetadata.ratings[2] +
+        reviewMetadata.ratings[3] +
+        reviewMetadata.ratings[4] +
+        reviewMetadata.ratings[5]
+
 
   useEffect(() => {
-    updateReviewListState(productInfoData.product_id, totalReviews);
+    updateReviewListState(productInfoData.id, totalReviews);
+    updateReviewMetadataState(productInfoData.id);
   }, []);
 
-  const updateReviewListState = (id, newCount, sortBy) => {
+  // useEffect(() => {
+  //   setReviewsList(productInfoData.id, totalReviews);
+  // }, [reviewsList]);
+
+  const updateReviewMetadataState = (id = 1) => {
+    return getReviewMetadata(id)
+      .then(({ data }) => {
+        setReviewMetadata(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const updateReviewListState = (id = 1, newCount, sortBy) => {
     return getReviewList(id, newCount, sortBy)
       .then(({ data }) => {
         setReviewsList(data);
@@ -33,17 +58,17 @@ const RatingsAndReviews = ({ productInfoData, reviewMetadata }) => {
       });
   };
 
-  const handleClickHelpful = (review_id, product_id, newCount, sortBy) => {
+  const handleClickHelpful = (review_id, product_id = 1, newCount, sortBy) => {
     return updateReviewHelpfulness(review_id)
       .then(() => {
-        Promise.resolve(updateReviewListState(product_id, newCount, sortBy));
+        Promise.resolve(updateReviewListState(product_id = 1, newCount, sortBy));
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  const handleClickReport = (review_id, product_id, newCount, sortBy) => {
+  const handleClickReport = (review_id, product_id = 1, newCount, sortBy) => {
     return reportReview(review_id)
       .then(() => {
         Promise.resolve(updateReviewListState(product_id, newCount, sortBy));
