@@ -1,27 +1,44 @@
 import React, {useState, useEffect} from 'react';
 
 const AddToCart = ({productStyles, index}) => {
-  const quantity = [];
-  for (let i = 0; i < 15; i++) {
-    quantity.push(i);
-  }
+  const [currentStyle, setCurrentStyle] = useState();
   const [isFavorite, updateFavorite] = useState(false);
+  const [size, setSize] = useState();
+  const [quantity, setQuantity] = useState();
   const toggleFavorite = () => updateFavorite(!isFavorite);
+  const createSizeArray = (num) => {
+    let array = [];
+    for (let i = 0; i <= num; i++) {
+      array.push(i);
+    }
+    return array;
+  };
+  const quantityDefault = createSizeArray(15);
+
+  useEffect(() => {
+    setQuantity(size ? (currentStyle.skus[size] < 15 ? createSizeArray(currentStyle.skus[size]) : createSizeArray(15)) : null);
+  }, [currentStyle, size]);
+
+  useEffect(() => {
+    setCurrentStyle(Object.keys(productStyles).length ? productStyles[index] : null);
+  }, [productStyles, index]);
+
 
   return (
     <div className="add-cart-container">
       <div className="select-container">
         <div className="select-size-container" >
-          <select className="select-size" >
+          <select className="select-size"
+            onChange={e => setSize(e.currentTarget.value)}>
             <option>SELECT SIZE</option>
-            {productStyles.length && Object.keys(productStyles[index].skus).map((size, i) => (
-              <option key={i}>{size}</option>
+            {currentStyle && Object.keys(currentStyle.skus).map((size, i) => (
+              <option value={size} key={i}>{size}</option>
             ))}
           </select>
         </div>
         <div className="select-quantity-container">
           <select className="select-quantity">
-            {quantity.map((num, i) => (
+            {quantityDefault.map((num, i) => (
               <option>{num}</option>
             ))}
           </select>

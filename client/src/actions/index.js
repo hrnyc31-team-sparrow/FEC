@@ -12,6 +12,10 @@ import {
 //   favorites: []
 //   reviewMetaData: {} //
 // }
+export const updateProductId = (productId) => ({
+  type: "UPDATE_PRODUCT_ID",
+  productId: productId,
+});
 
 //after clicking on another product, update the main product
 const updateProductInfo = (productInfo) => ({
