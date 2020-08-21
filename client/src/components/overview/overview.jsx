@@ -4,45 +4,38 @@ import productStylesData from '../../../../mockData/productStylesData';
 import ProductInfo from './product-info/ProductInfo.jsx';
 import productInfoData from '../../../../mockData/productInfoData';
 import { useSelector } from 'react-redux';
+import ProductDetails from './product-info/ProductDetails.jsx';
 
 const Overview = () => {
-  const [productStyles, setProductStyles] = useState(productStylesData.results);
+  const productStyles = useSelector(state => state.productStyles);
   const [styleIndex, setStyleIndex] = useState(0);
-  const [currentStyle, setCurrentStyle] = useState(productStyles[styleIndex]);
+  const [currentStyle, setCurrentStyle1] = useState();
   const [expandedView, resizeView] = useState(false);
-  const [productInfo, setProductInfo] = useState(productInfoData);
   const toggleExpanded = () => resizeView(!expandedView);
   const toggleStyle = (value) => setStyleIndex(value);
-  const reviewMetadata = useSelector(state => state.reviewMetadata);
-
-
+  const productInfo = useSelector(state => state.productInfo);
+  
+  
   useEffect(() => {
-    setCurrentStyle(productStyles[styleIndex]);
-  }, [currentStyle, styleIndex]);
+    setCurrentStyle1(productStyles.length ? productStyles[styleIndex] : null);
+  }, [productStyles, styleIndex]);
+
+
 
   return (
     <div className='overview-parent' >
       <div className='announcement'><em>SITE-WIDE ANNOUNCEMENT MESSAGE!</em> -- SALE / DISCOUNT <b>OFFER</b> -- <u>NEW PRODUCT HIGHLIGHT</u></div>
-      <ImageGallery currentStyle={currentStyle} toggleExpanded={toggleExpanded} expandedView={expandedView} />
-      <ProductInfo expandedView={expandedView} productInfo={productInfo} currentStyle={currentStyle} productStyles={productStyles} toggleStyle={toggleStyle} index={styleIndex} />
+      <ImageGallery toggleExpanded={toggleExpanded} expandedView={expandedView} currentStyle={currentStyle}/>
+      <ProductInfo expandedView={expandedView} currentStyle={currentStyle} productStyles={productStyles} toggleStyle={toggleStyle} index={styleIndex} />
       <div className='product-description'>
       <h4>{productInfo.slogan}</h4>
         <p>{productInfo.description}</p>
       </div>
-      <div className='product-details'>
-        <div className="details-border" />
-        <div className="details-list">
-          <ul>
-            {Object.keys(productInfo).length && productInfo.features.map((feature) => (
-              <li><span className="check" />  {feature.value} {feature.feature}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
+      <ProductDetails />
+      
     </div>
   );
-
+  
 };
 
 export default Overview;

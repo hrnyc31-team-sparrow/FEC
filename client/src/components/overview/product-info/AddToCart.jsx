@@ -14,7 +14,7 @@ const AddToCart = ({productStyles, index}) => {
         <div className="select-size-container" >
           <select className="select-size" >
             <option>SELECT SIZE</option>
-            {Object.keys(productStyles[index].skus).map((size, i) => (
+            {productStyles.length && Object.keys(productStyles[index].skus).map((size, i) => (
               <option key={i}>{size}</option>
             ))}
           </select>
