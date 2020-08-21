@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ImageGallery from './image-gallery/ImageGallery.jsx';
-import productStylesData from '../../../../mockData/productStylesData';
 import ProductInfo from './product-info/ProductInfo.jsx';
-import productInfoData from '../../../../mockData/productInfoData';
 import { useSelector } from 'react-redux';
 import ProductDetails from './product-info/ProductDetails.jsx';
 

@@ -9,8 +9,8 @@ const ProductDetails = () => {
       <div className="details-border" />
       <div className="details-list">
         <ul>
-          {Object.keys(productInfo).length && productInfo.features.map((feature) => (
-            <li><span className="check" />  {feature.value} {feature.feature}</li>
+          {Object.keys(productInfo).length && productInfo.features.map((feature, i) => (
+            <li key={i}><span className="check" />  {feature.value} {feature.feature}</li>
           ))}
         </ul>
       </div>
