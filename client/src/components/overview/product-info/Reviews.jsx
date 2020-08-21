@@ -32,7 +32,7 @@ const Rating = () => {
     <div className="reviews">
       <span className='vertical-align'>
         <StarRating width={ratings2 && (calculateWidth(ratings2))}/>
-        <span>  <u>Read all reviews</u></span>
+        {/* <span>  <u>Read all reviews</u></span> */}
       </span>
     </div>
   );
