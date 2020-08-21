@@ -17,15 +17,9 @@ export const getRelatedProducts = (product_id = 1) => {
   return axios.get(`${url}/products/${product_id}/related`);
 };
 
-export const getReviewList = (
-  product_id = 1,
-  page = 1,
-  count = 2,
-  sort = "relevant"
-) => {
+export const getReviewList = (product_id = 1, count, sort = "relevant") => {
   return axios.get(`${url}/reviews/${product_id}/list`, {
     params: {
-      page,
       count,
       sort,
     },
@@ -55,7 +49,8 @@ export const addReview = ({
     name,
     email,
     photos,
-    characteristics)
+    characteristics
+  );
   return axios.post(`${url}/reviews/${product_id}`, {
     rating,
     summary,
@@ -66,7 +61,6 @@ export const addReview = ({
     photos,
     characteristics,
   });
-
 };
 
 export const updateReviewHelpfulness = (review_id) => {
@@ -77,7 +71,6 @@ export const reportReview = (review_id) => {
   return axios.put(`${url}/reviews/report/${review_id}`);
 };
 
-
 // const getCart = () => {
 //   return axios.get(`${url}/cart`)
 // }
@@ -85,4 +78,14 @@ export const reportReview = (review_id) => {
 // const addToCard = (sku_id) => {
 //   return axios.post('')
 // }
-export default { getProductInfo, getProductList, getProductStyle, getRelatedProducts, getReviewList, getReviewMetadata, addReview, updateReviewHelpfulness, reportReview };
+export default {
+  getProductInfo,
+  getProductList,
+  getProductStyle,
+  getRelatedProducts,
+  getReviewList,
+  getReviewMetadata,
+  addReview,
+  updateReviewHelpfulness,
+  reportReview,
+};

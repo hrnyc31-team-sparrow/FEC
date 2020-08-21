@@ -1,6 +1,6 @@
 import React from "react";
 
-const Characteristics = ({
+const CharacteristicsUserInput = ({
   sizeChar,
   widthChar,
   comfortChar,
@@ -626,4 +626,4 @@ const Characteristics = ({
   );
 };
 
-export default Characteristics;
+export default CharacteristicsUserInput;

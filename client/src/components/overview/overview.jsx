@@ -15,6 +15,7 @@ const Overview = () => {
   const toggleStyle = (value) => setStyleIndex(value);
   const reviewMetadata = useSelector(state => state.reviewMetadata);
 
+
   useEffect(() => {
     setCurrentStyle(productStyles[styleIndex]);
   }, [currentStyle, styleIndex]);
@@ -25,23 +26,23 @@ const Overview = () => {
       <ImageGallery currentStyle={currentStyle} toggleExpanded={toggleExpanded} expandedView={expandedView} />
       <ProductInfo expandedView={expandedView} productInfo={productInfo} currentStyle={currentStyle} productStyles={productStyles} toggleStyle={toggleStyle} index={styleIndex} />
       <div className='product-description'>
-      <h4>{productInfo.slogan} Metadata Id: {reviewMetadata.product_id}</h4>
+      <h4>{productInfo.slogan}</h4>
         <p>{productInfo.description}</p>
       </div>
       <div className='product-details'>
         <div className="details-border" />
         <div className="details-list">
           <ul>
-            {productInfo.features.map((feature) => (
+            {Object.keys(productInfo).length && productInfo.features.map((feature) => (
               <li><span className="check" />  {feature.value} {feature.feature}</li>
             ))}
           </ul>
         </div>
       </div>
-      
+
     </div>
   );
-  
+
 };
 
 export default Overview;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import StarRating from "./StarRating";
 import RatingBreakdown from "./RatingBreakdown";
 
-const Rating = ({ reviewMetadata, reviewsList, totalReviews }) => {
+const Rating = ({ reviewMetadata, reviewsList, totalReviews,setReviewsList, updateReviewListState, productInfoData }) => {
   const ratings = reviewMetadata.ratings;
   const averageRating =
     (ratings[1] +
@@ -32,6 +32,9 @@ const Rating = ({ reviewMetadata, reviewsList, totalReviews }) => {
         reviewMetadata={reviewMetadata}
         totalReviews={totalReviews}
         reviewsList={reviewsList}
+        setReviewsList={setReviewsList}
+        updateReviewListState={updateReviewListState}
+        productInfoData={productInfoData}
       />
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import StarRating from "./StarRating";
 import moment from "moment";
-import { addReview }  from "../../apiMaster.js";
+import { addReview } from "../../apiMaster.js";
 import altImage from "../../../dist/lib/altImage.jpg";
 import Modal from "./Modal";
 
@@ -13,10 +13,12 @@ const ReviewsFeed = ({
   totalReviews,
   updateReviewListState,
   productInfoData,
+  currentSort,
+  currentIndex,
+  setCurrentIndex,
+  setCurrentSort,
 }) => {
   const sortOptions = ["Relevant", "Helpful", "Newest"];
-  const [currentSort, setCurrentSort] = useState("relevant");
-  const [currentIndex, setCurrentIndex] = useState(4);
   const [showModal, setShowModal] = useState(false);
   const [currentModalView, setCurrentModalView] = useState("photo");
 
@@ -25,9 +27,9 @@ const ReviewsFeed = ({
     let newSort = event.target.value.toLowerCase();
     Promise.resolve(setCurrentSort(newSort))
       .then(() => {
-        updateReviewListState(reviewsList.product, 2, newSort);
+        updateReviewListState(reviewsList.product, totalReviews, newSort);
         {
-          setCurrentIndex(4);
+          setCurrentIndex(1);
         }
       })
       .catch((err) => {
@@ -35,18 +37,11 @@ const ReviewsFeed = ({
       });
   };
 
-  const getMoreReviews = (event) => {
-    event.preventDefault();
-    if (currentIndex <= totalReviews) {
-      Promise.resolve(setCurrentIndex(currentIndex + 2))
-        .then(() => {
-          updateReviewListState(reviewsList.product, currentIndex, currentSort);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+  const getMoreReviews = () => {
+    if (currentIndex < totalReviews) {
+      setCurrentIndex(currentIndex + 2);
     } else {
-      setCurrentIndex(2);
+      setCurrentIndex(1);
     }
   };
 
@@ -73,11 +68,12 @@ const ReviewsFeed = ({
         productInfoData={productInfoData}
         showModal={showModal}
         handleClose={handleClose}
+        currentSort={currentSort}
+        currentIndex={currentIndex}
+        reviewsList={reviewsList}
       />
     );
   };
-
-  const reader = new FileReader();
 
   return (
     <div className="reviews">
@@ -103,103 +99,107 @@ const ReviewsFeed = ({
       <br />
       <div className="review-feed-container">
         {reviewsList.results !== undefined ? (
-          reviewsList.results.map((review, index) => {
-            return (
-              <div className="review-container">
-                <StarRating width={(review.rating / 5) * 100} />
-                <span className="user-and-date text-style-2">
-                  {review.reviewer_name},{" "}
-                  {moment(review.date).format("MMM D, YYYY")}
-                </span>
-                <br />
+          reviewsList.results
+            .map((review, index) => {
+              return (
+                <div className="review-container">
+                  <StarRating width={(review.rating / 5) * 100} />
+                  <span className="user-and-date text-style-2">
+                    {review.reviewer_name},{" "}
+                    {moment(review.date).format("MMM D, YYYY")}
+                  </span>
+                  <br />
 
-                {review.summary.length > 60 ? (
-                  <>
+                  {review.summary.length > 60 ? (
+                    <>
+                      <p className="review-title text-style-1">
+                        {review.summary.slice(0, 61)}...
+                      </p>
+                      <p className="review-title-balance text-style-2">
+                        ...{review.summary.slice(61, review.summary.length)}
+                      </p>
+                    </>
+                  ) : (
                     <p className="review-title text-style-1">
-                      {review.summary.slice(0, 61)}...
+                      {review.summary}
                     </p>
-                    <p className="review-title-balance text-style-2">
-                      ...{review.summary.slice(61, review.summary.length)}
+                  )}
+
+                  <p className="review-body text-style-2">{review.body}</p>
+
+                  {review.recommend === 1 ? (
+                    <p className="text-style-2">
+                      {" "}
+                      <span className="check"></span> I recommend this product
                     </p>
-                  </>
-                ) : (
-                  <p className="review-title text-style-1">{review.summary}</p>
-                )}
+                  ) : (
+                    <></>
+                  )}
 
-                <p className="review-body text-style-2">{review.body}</p>
+                  {review.response !== null ? (
+                    <div className="review-response-container">
+                      <p className="review-response">Response from seller:</p>
+                      <p className="review-response">{review.response}</p>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                  <br />
 
-                {review.recommend === 1 ? (
-                  <p className="text-style-2">
-                    {" "}
-                    <span className="check"></span> I recommend this product
-                  </p>
-                ) : (
-                  <></>
-                )}
+                  {review.photos.length > 0 ? (
+                    <div>
+                      {review.photos.map((photo) => {
+                        return (
+                          <>
+                            {showModal === true ? displayModal(photo) : <></>}
+                            <img
+                              className="photo-thumbnail"
+                              src={photo.url}
+                              onClick={handleClickPhoto}
+                            ></img>
+                          </>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <></>
+                  )}
 
-                {review.response !== null ? (
-                  <div className="review-response-container">
-                    <p className="review-response">Response from seller:</p>
-                    <p className="review-response">{review.response}</p>
-                  </div>
-                ) : (
-                  <></>
-                )}
-                <br />
-
-                {review.photos.length > 0 ? (
-                  <div>
-                    {review.photos.map((photo) => {
-                      return (
-                        <>
-                          {showModal === true ? displayModal(photo) : <></>}
-                          <img
-                            className="photo-thumbnail"
-                            src={photo}
-                            onClick={handleClickPhoto}
-                          ></img>
-                        </>
-                      );
-                    })}
-                  </div>
-                ) : (
-                  <></>
-                )}
-
-                <span className="text-style-2">
-                  Helpful?{" "}
-                  <span
-                    className="clickable margin-sides"
-                    onClick={() => {
-                      handleClickHelpful(
-                        review.review_id,
-                        reviewsList.product,
-                        currentIndex,
-                        currentSort
-                      );
-                    }}
-                  >
-                    Yes
+                  <span className="text-style-2">
+                    Helpful?{" "}
+                    <span
+                      className="clickable margin-sides"
+                      onClick={() => {
+                        handleClickHelpful(
+                          review.review_id,
+                          reviewsList.product,
+                          totalReviews,
+                          currentSort
+                        );
+                      }}
+                    >
+                      Yes
+                    </span>
+                    ({review.helpfulness}) /
+                    <span className="clickable margin-sides">No</span> |
+                    <span
+                      className="clickable margin-sides"
+                      onClick={() => {
+                        handleClickReport(
+                          review.review_id,
+                          reviewsList.product,
+                          totalReviews,
+                          currentSort
+                        );
+                      }}
+                    >
+                      Report
+                    </span>
                   </span>
-                  ({review.helpfulness}) /
-                  <span className="clickable margin-sides">No</span> |
-                  <span
-                    className="clickable margin-sides"
-                    onClick={() => {
-                      handleClickReport(
-                        review.review_id,
-                        reviewsList.product,
-                        currentIndex,
-                        currentSort
-                      );
-                    }}
-                  >
-                    Report
-                  </span>
-                </span>
-              </div>
-            );
-          })
+                </div>
+              );
+            })
+            .slice(0, currentIndex + 1)
         ) : (
           <div>loading</div>
         )}
