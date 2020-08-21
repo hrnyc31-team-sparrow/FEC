@@ -17,6 +17,7 @@ const ReviewsFeed = ({
   currentIndex,
   setCurrentIndex,
   setCurrentSort,
+  updateReviewMetadataState,
 }) => {
   const sortOptions = ["Relevant", "Helpful", "Newest"];
   const [showModal, setShowModal] = useState(false);
@@ -71,6 +72,8 @@ const ReviewsFeed = ({
         currentSort={currentSort}
         currentIndex={currentIndex}
         reviewsList={reviewsList}
+        updateReviewMetadataState ={updateReviewMetadataState }
+        totalReviews={totalReviews}
       />
     );
   };

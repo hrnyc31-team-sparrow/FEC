@@ -101,6 +101,7 @@ const RatingsAndReviews = ({ productInfoData }) => {
         currentSort={currentSort}
         setCurrentIndex={setCurrentIndex}
         setCurrentSort={setCurrentSort}
+        updateReviewMetadataState={updateReviewMetadataState }
       />
     </div>
   );
