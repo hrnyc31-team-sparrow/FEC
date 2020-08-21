@@ -5,7 +5,7 @@ const ThumbnailGallery = ({thumbnails, index, selectThumbnail}) => (
     {index > 4 && (
       <img onClick={() => selectThumbnail(index - 1)} className="thumbnail-arrow-top" src="./images/arrow-head.png" />
     )}
-    {Object.keys(thumbnails).length && thumbnails.map((photo, i) => {
+    {thumbnails && (thumbnails.map((photo, i) => {
       if (index < 5 && i < 5) {
         return (
           <div className={index === i ? "thumbnail selected" : "thumbnail"} key={i}>
@@ -20,10 +20,10 @@ const ThumbnailGallery = ({thumbnails, index, selectThumbnail}) => (
         );
       }
             
-    })}
-    {index < thumbnails.length - 1 && (
+    }))}
+    {thumbnails && (index < thumbnails.length - 1 && (
       <img onClick={() => selectThumbnail(index + 1)}className="thumbnail-arrow-bottom" src="./images/arrow-head.png" />
-    )}
+    ))}
         
   </div>
     
