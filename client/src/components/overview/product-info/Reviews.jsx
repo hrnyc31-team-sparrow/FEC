@@ -26,14 +26,14 @@ const Rating = () => {
   const width = (averageRating / 5) * 100;
   const [width2, setWidth2] = useState();
 
-  useEffect(() => {
-    setWidth2(Object.keys(reviewMetadata).length ? calculateWidth(reviewMetadata) : 0);
-  }, [reviewMetadata]);
+  // useEffect(() => {
+  //   setWidth2(Object.keys(reviewMetadata).length ? calculateWidth(reviewMetadata) : 0);
+  // }, [reviewMetadata]);
   
   return (
     <div className="reviews">
       <span className='vertical-align'>
-        <StarRating width={width2}/>
+        <StarRating width={width}/>
         
         <span>  <u>Read all reviews</u></span>
       </span>
