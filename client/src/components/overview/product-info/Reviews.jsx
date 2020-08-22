@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import StarRating from '../../ratings-and-reviews/StarRating';
-import reviewMetadataData from "../../../../../mockData/reviewMetadataData";
 import { useSelector } from 'react-redux';
 
 const Rating = () => {
