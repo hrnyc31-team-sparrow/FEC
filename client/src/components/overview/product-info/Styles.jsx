@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Styles = ({productStyles, index, toggleStyle}) => (
-    <div className="style-gallery">
+    <div className={productStyles.length && (productStyles.length > 8 ? "style-gallery-expanded" : "style-gallery")}>
         {productStyles.length && productStyles.map((style, i) => (
             <div className="style-container" key={i}>
                 

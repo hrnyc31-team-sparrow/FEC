@@ -7,7 +7,7 @@ import ProductDetails from './product-info/ProductDetails.jsx';
 const Overview = () => {
   const productStyles = useSelector(state => state.productStyles);
   const [styleIndex, setStyleIndex] = useState(0);
-  const [currentStyle, setCurrentStyle1] = useState();
+  const [currentStyle, setCurrentStyle] = useState();
   const [expandedView, resizeView] = useState(false);
   const toggleExpanded = () => resizeView(!expandedView);
   const toggleStyle = (value) => setStyleIndex(value);
@@ -15,7 +15,7 @@ const Overview = () => {
   
   
   useEffect(() => {
-    setCurrentStyle1(productStyles.length ? productStyles[styleIndex] : null);
+    setCurrentStyle(productStyles.length ? productStyles[styleIndex] : null);
   }, [productStyles, styleIndex]);
 
 
