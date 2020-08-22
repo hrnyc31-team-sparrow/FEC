@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import RatingsAndReviews from "./components/ratings-and-reviews/RatingsAndReviews"
 import productInfoData from "../../mockData/productInfoData.js"
-import reviewMetadataData from "../../mockData/reviewMetadataData.js"
 import Overview from "./components/overview/Overview";
 import team_sparrow from "../dist/lib/team_sparrow.png";
 import { useDispatch, useSelector } from 'react-redux';
-import { handleProductUpdate, handleProductListUpdate, handleReviewMetadataUpdate, handleProductStylesUpdate } from "./actions";
+import { handleProductUpdate, handleReviewMetadataUpdate, handleProductStylesUpdate } from "./actions";
 
 
 const App = () => {
-  const reviewMetadata = useSelector(state => state.reviewMetadata);
   const productId = useSelector(state => state.productId);
   const dispatch = useDispatch();
 
@@ -17,7 +15,6 @@ const App = () => {
     dispatch(handleProductUpdate(productId));
     dispatch(handleReviewMetadataUpdate(productId));
     dispatch(handleProductStylesUpdate(productId));
-    console.log(reviewMetadata);
   }, [productId]);
 
 

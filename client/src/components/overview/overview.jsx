@@ -3,6 +3,7 @@ import ImageGallery from './image-gallery/ImageGallery.jsx';
 import ProductInfo from './product-info/ProductInfo.jsx';
 import { useSelector } from 'react-redux';
 import ProductDetails from './product-info/ProductDetails.jsx';
+import ProductDescription from './product-info/ProductDescription.jsx';
 
 const Overview = () => {
   const productStyles = useSelector(state => state.productStyles);
@@ -11,11 +12,10 @@ const Overview = () => {
   const [expandedView, resizeView] = useState(false);
   const toggleExpanded = () => resizeView(!expandedView);
   const toggleStyle = (value) => setStyleIndex(value);
-  const productInfo = useSelector(state => state.productInfo);
   
   
   useEffect(() => {
-    setCurrentStyle(productStyles.length ? productStyles[styleIndex] : null);
+    setCurrentStyle(productStyles.length ? productStyles[styleIndex] : undefined);
   }, [productStyles, styleIndex]);
 
 
@@ -25,12 +25,8 @@ const Overview = () => {
       <div className='announcement'><em>SITE-WIDE ANNOUNCEMENT MESSAGE!</em> -- SALE / DISCOUNT <b>OFFER</b> -- <u>NEW PRODUCT HIGHLIGHT</u></div>
       <ImageGallery toggleExpanded={toggleExpanded} expandedView={expandedView} currentStyle={currentStyle}/>
       <ProductInfo expandedView={expandedView} currentStyle={currentStyle} productStyles={productStyles} toggleStyle={toggleStyle} index={styleIndex} />
-      <div className='product-description'>
-      <h4>{productInfo.slogan}</h4>
-        <p>{productInfo.description}</p>
-      </div>
+      <ProductDescription />
       <ProductDetails />
-      
     </div>
   );
   

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import productInfoData from '../../../../../mockData/productInfoData';
 
 const ProductDetails = () => {
   const productInfo = useSelector(state => state.productInfo);

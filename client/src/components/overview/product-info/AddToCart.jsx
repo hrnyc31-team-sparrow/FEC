@@ -13,14 +13,13 @@ const AddToCart = ({productStyles, index}) => {
     }
     return array;
   };
-  const quantityDefault = createSizeArray(15);
 
   useEffect(() => {
-    setQuantity(size ? (currentStyle.skus[size] < 15 ? createSizeArray(currentStyle.skus[size]) : createSizeArray(15)) : null);
+    setQuantity(size ? (currentStyle.skus[size] < 15 ? createSizeArray(currentStyle.skus[size]) : createSizeArray(15)) : undefined);
   }, [currentStyle, size]);
 
   useEffect(() => {
-    setCurrentStyle(Object.keys(productStyles).length ? productStyles[index] : null);
+    setCurrentStyle(Object.keys(productStyles).length ? productStyles[index] : undefined);
   }, [productStyles, index]);
 
 
@@ -45,12 +44,12 @@ const AddToCart = ({productStyles, index}) => {
         </div>
       </div>
       <div className="cart-button-container">
-          <div className="add-button-container">
-            <button className="cart-button">ADD TO CART     +</button>
-          </div>
-          <div className="favorite-button-container">
-            <button onClick={() => toggleFavorite()} className={isFavorite ? "favorite-button selected" : "favorite-button default"}>★</button>
-          </div>
+        <div className="add-button-container">
+          <button className="cart-button">ADD TO CART     +</button>
+        </div>
+        <div className="favorite-button-container">
+          <button onClick={() => toggleFavorite()} className={isFavorite ? "favorite-button selected" : "favorite-button default"}>★</button>
+        </div>
       </div>
     </div>
   );
