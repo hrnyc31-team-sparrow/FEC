@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import RatingsAndReviews from "./components/ratings-and-reviews/RatingsAndReviews"
-import productInfoData from "../../mockData/productInfoData.js"
+import RatingsAndReviews from "./components/ratings-and-reviews/RatingsAndReviews";
+import productInfoData from "../../mockData/productInfoData.js";
 import Overview from "./components/overview/Overview";
 import team_sparrow from "../dist/lib/team_sparrow.png";
 import { useDispatch, useSelector } from 'react-redux';
