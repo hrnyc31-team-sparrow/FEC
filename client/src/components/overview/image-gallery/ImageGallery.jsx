@@ -10,13 +10,11 @@ const ImageGallery = ({expandedView, toggleExpanded, currentStyle}) => {
   const toggleZoom = () => setZoom(!zoomView);
   
   useEffect(() => {
-    setCurrentPhoto(currentStyle ? currentStyle.photos[index] : null);
-    // setCurrentPhoto(currentStyle.photos[index]);
+    setCurrentPhoto(currentStyle ? currentStyle.photos[index] : undefined);
   }, [currentStyle, index]);
 
   useEffect(() => {
-    setThumbnails(currentStyle ? currentStyle.photos : null);
-    // setThumbnails(currentStyle.photos);
+    setThumbnails(currentStyle ? currentStyle.photos : undefined);
   }, [currentStyle]);
 
 
@@ -26,10 +24,10 @@ const ImageGallery = ({expandedView, toggleExpanded, currentStyle}) => {
         <img className={ expandedView ? zoomView ? "main-image zoomed" : "main-image expanded" : "main-image default"} onClick={expandedView ? toggleZoom : toggleExpanded} src={ currentPhoto ? currentPhoto.url : ''} />
         <div className="overlay-container">
           <ThumbnailGallery index={index} selectThumbnail={selectThumbnail} thumbnails={thumbnails} />
-            <img 
-                onClick={toggleExpanded}
-                className="expand-view" 
-                src="./images/expand-view.png" />
+          <img 
+            onClick={toggleExpanded}
+            className="expand-view" 
+            src="./images/expand-view.png" />
           {currentStyle && (index < currentStyle.photos.length - 1 && (
             <img
               onClick={() => changeIndex(index + 1)} 
@@ -38,8 +36,8 @@ const ImageGallery = ({expandedView, toggleExpanded, currentStyle}) => {
           }
           {currentStyle && (index > 0 && (
             <img
-                onClick={() => changeIndex(index - 1)}
-                className="arrow-left" src='./images/main-arrow.png' />
+              onClick={() => changeIndex(index - 1)}
+              className="arrow-left" src='./images/main-arrow.png' />
           ))
           }
           
