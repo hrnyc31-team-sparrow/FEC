@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Ratings from "./Ratings";
 import ReviewsFeed from "./ReviewsFeed";
 import reviewMetadataData from "../../../../mockData/reviewMetadataData"
-import { useDispatch, useSelector } from 'react-redux';
 import {
   getReviewList,
   getReviewMetadata,
@@ -17,9 +16,6 @@ const RatingsAndReviews = ({ productInfoData }) => {
   const [currentSort, setCurrentSort] = useState("relevant");
   const [currentIndex, setCurrentIndex] = useState(1);
   const [reviewMetadata, setReviewMetadata] = useState(reviewMetadataData);
-  // const reviewMetadata = useSelector(state => state.reviewMetadata);
-  const dispatch = useDispatch();
-
 
   const totalReviews =
         reviewMetadata.ratings[1] +
@@ -34,9 +30,6 @@ const RatingsAndReviews = ({ productInfoData }) => {
     updateReviewMetadataState(productInfoData.id);
   }, []);
 
-  // useEffect(() => {
-  //   setReviewsList(productInfoData.id, totalReviews);
-  // }, [reviewsList]);
 
   const updateReviewMetadataState = (id = 1) => {
     return getReviewMetadata(id)
