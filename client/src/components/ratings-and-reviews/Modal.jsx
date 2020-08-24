@@ -22,7 +22,6 @@ class Modal extends React.Component {
       qualityChar: { id: 0, value: 0 },
       lengthChar: { id: 0, value: 0 },
       fitChar: { id: 0, value: 0 },
-      valid: true,
       lastId: 136,
       invalidMessage: [],
     };
@@ -34,10 +33,8 @@ class Modal extends React.Component {
     );
     this.displayRatingDesc = this.displayRatingDesc.bind(this);
     this.handleChangeRec = this.handleChangeRec.bind(this);
-    this.validEmail = this.validEmail.bind(this);
     this.displayMessageName = this.displayMessageName.bind(this);
     this.displayMessageEmail = this.displayMessageEmail.bind(this);
-    this.isInvalid = this.isInvalid.bind(this);
     this.handleChangeSize = this.handleChangeSize.bind(this);
     this.handleChangeWidth = this.handleChangeWidth.bind(this);
     this.handleChangeComfort = this.handleChangeComfort.bind(this);
@@ -45,61 +42,6 @@ class Modal extends React.Component {
     this.handleChangeLength = this.handleChangeLength.bind(this);
     this.handleChangeFit = this.handleChangeFit.bind(this);
     this.incrementId = this.incrementId.bind(this);
-  }
-
-  isInvalid() {
-    const result = false;
-    const invalidMessage = [];
-    const {
-      rating,
-      summary,
-      body,
-      recommend,
-      name,
-      email,
-      photos,
-      sizeChar,
-      widthChar,
-      comfortChar,
-      qualityChar,
-      lengthChar,
-      fitChar,
-      valid,
-    } = this.state;
-
-    if (
-      rating < 1 ||
-      recommend === null ||
-      body.length === 0 ||
-      email.length === 0 ||
-      name === 0 ||
-      sizeChar.value === 0 ||
-      widthChar.value === 0 ||
-      comfortChar.value === 0 ||
-      qualityChar.value === 0 ||
-      lengthChar.value === 0 ||
-      fitChar.value === 0
-    ) {
-      result = true;
-      this.setState({
-        valid: false,
-      });
-      invalidMessage.push("All mandatory fields must be filled out");
-    }
-    if (!this.validEmail()) {
-      result = true;
-      invalidMessage.push(
-        "The email address provided is not in correct email format"
-      );
-    }
-    if (body.length < 51) {
-      result = true;
-      this.setState({
-        valid: false,
-      });
-      invalidMessage.push("The Review body must be more than 50 characters");
-    }
-    return result;
   }
 
   displayMessageEmail() {
@@ -122,20 +64,6 @@ class Modal extends React.Component {
     }
   }
 
-  validEmail() {
-    let last4 = this.state.email.slice(this.state.email.length - 4);
-    if (
-      this.state.email.includes("@") &&
-      (last4[0] === "." || last4[1] === ".")
-    ) {
-      return true;
-    }
-    this.setState({
-      valid: false,
-    });
-    return false;
-  }
-
   handleSubmitForm(event) {
     event.preventDefault();
     const {
@@ -152,9 +80,8 @@ class Modal extends React.Component {
       qualityChar,
       lengthChar,
       fitChar,
-      valid,
     } = this.state;
-    var charObj = {
+    const charObj = {
       [sizeChar.id]: Number(sizeChar.value),
       [widthChar.id]: Number(widthChar.value),
       [comfortChar.id]: Number(comfortChar.value),
@@ -164,33 +91,31 @@ class Modal extends React.Component {
     };
 
     const id = this.props.productInfoData.id;
-    if (valid === true) {
-      addReview({
-        product_id: id,
-        rating,
-        summary,
-        body,
-        recommend,
-        name,
-        email,
-        photos,
-        characteristics: charObj,
+    addReview({
+      product_id: id,
+      rating,
+      summary,
+      body,
+      recommend,
+      name,
+      email,
+      photos,
+      characteristics: charObj,
+    })
+      .then(() => {
+        this.props.updateReviewListState(
+          id,
+          this.props.totalReviews,
+          this.props.currentSort
+        );
+        this.props.updateReviewMetadataState(id);
       })
-        .then(() => {
-          this.props.updateReviewListState(
-            id,
-            this.props.totalReviews,
-            this.props.currentSort
-          );
-          this.props.updateReviewMetadataState(id);
-        })
-        .then(() => {
-          this.handleClickClose();
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+      .then(() => {
+        this.handleClickClose();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   handleChangeForm(event) {
     this.setState({

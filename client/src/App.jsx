@@ -17,7 +17,6 @@ const App = () => {
     dispatch(handleProductUpdate(productId));
     dispatch(handleReviewMetadataUpdate(productId));
     dispatch(handleProductStylesUpdate(productId));
-    console.log(reviewMetadata);
   }, [productId]);
 
 

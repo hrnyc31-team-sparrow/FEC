@@ -71,13 +71,6 @@ export const reportReview = (review_id) => {
   return axios.put(`${url}/reviews/report/${review_id}`);
 };
 
-// const getCart = () => {
-//   return axios.get(`${url}/cart`)
-// }
-
-// const addToCard = (sku_id) => {
-//   return axios.post('')
-// }
 export default {
   getProductInfo,
   getProductList,
