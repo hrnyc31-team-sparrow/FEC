@@ -13,7 +13,7 @@ This front-end project was engineered using React Hook base framework coupled wi
 
 ---
 
-##Installing-Dependencies
+## Installing-Dependencies
 
 ### Run the following commands in your terminal in the root directory:
 
@@ -36,7 +36,7 @@ npm run build-dev
 
 ----
 
-##Tech-Stack
+## Tech-Stack
 - React + Hooks
 - Redux + Hooks
 - Sass
