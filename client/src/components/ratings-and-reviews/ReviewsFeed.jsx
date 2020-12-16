@@ -139,7 +139,7 @@ const ReviewsFeed = ({
                     <></>
                   )}
 
-                  {review.response !== null ? (
+                  {review.response.length > 0 ? (
                     <div className="review-response-container">
                       <p className="review-response">Response from seller:</p>
                       <p className="review-response">{review.response}</p>

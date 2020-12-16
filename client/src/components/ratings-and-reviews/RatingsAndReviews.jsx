@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Ratings from "./Ratings";
 import ReviewsFeed from "./ReviewsFeed";
-import reviewMetadataData from "../../../../mockData/reviewMetadataData"
+import reviewMetadataData from "../../../../mockData/reviewMetadataData";
+import reviewsListData from "../../../../mockData/reviewsListData";
 import {
   getReviewList,
   getReviewMetadata,
@@ -10,37 +11,39 @@ import {
 } from "../../apiMaster.js";
 import { handleReviewMetadataUpdate } from "../../actions";
 
-
 const RatingsAndReviews = ({ productInfoData }) => {
   const [reviewsList, setReviewsList] = useState([]);
   const [currentSort, setCurrentSort] = useState("relevant");
   const [currentIndex, setCurrentIndex] = useState(1);
   const [reviewMetadata, setReviewMetadata] = useState(reviewMetadataData);
 
-  const totalReviews =
-        reviewMetadata.ratings[1] +
-        reviewMetadata.ratings[2] +
-        reviewMetadata.ratings[3] +
-        reviewMetadata.ratings[4] +
-        reviewMetadata.ratings[5]
-console.log('totalReviews: ', totalReviews)
   useEffect(() => {
-    updateReviewListState(productInfoData.id, totalReviews);
-    // updateReviewMetadataState(productInfoData.id);
+    updateReviewMetadataState(productInfoData.id);
   }, []);
+  const totalReviews=
+          (reviewMetadata.ratings[1] || 0) +
+          (reviewMetadata.ratings[2] || 0) +
+          (reviewMetadata.ratings[3] || 0) +
+          (reviewMetadata.ratings[4] || 0) +
+          (reviewMetadata.ratings[5] || 0);
 
 
-  const updateReviewMetadataState = (id = 1) => {
+  console.log("totalReviews: ", totalReviews);
+
+  const updateReviewMetadataState = (id = 2) => {
     return getReviewMetadata(id)
       .then(({ data }) => {
         setReviewMetadata(data);
+      })
+      .then(() => {
+        updateReviewListState(productInfoData.id, totalReviews, currentSort);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  const updateReviewListState = (id = 1, newCount, sortBy) => {
+  const updateReviewListState = (id = 2, newCount, sortBy) => {
     return getReviewList(id, newCount, sortBy)
       .then(({ data }) => {
         setReviewsList(data);
@@ -50,17 +53,19 @@ console.log('totalReviews: ', totalReviews)
       });
   };
 
-  const handleClickHelpful = (review_id, product_id = 1, newCount, sortBy) => {
+  const handleClickHelpful = (review_id, product_id = 2, newCount, sortBy) => {
     return updateReviewHelpfulness(review_id)
       .then(() => {
-        Promise.resolve(updateReviewListState(product_id = 1, newCount, sortBy));
+        Promise.resolve(
+          updateReviewListState((product_id = 2), newCount, sortBy)
+        );
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  const handleClickReport = (review_id, product_id = 1, newCount, sortBy) => {
+  const handleClickReport = (review_id, product_id = 2, newCount, sortBy) => {
     return reportReview(review_id)
       .then(() => {
         Promise.resolve(updateReviewListState(product_id, newCount, sortBy));
@@ -93,7 +98,7 @@ console.log('totalReviews: ', totalReviews)
         currentSort={currentSort}
         setCurrentIndex={setCurrentIndex}
         setCurrentSort={setCurrentSort}
-        updateReviewMetadataState={updateReviewMetadataState }
+        updateReviewMetadataState={updateReviewMetadataState}
       />
     </div>
   );

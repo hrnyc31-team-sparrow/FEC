@@ -86,6 +86,7 @@ const RatingBreakdown = ({
     }
   };
   return (
+    reviewMetadata.ratings ?
     <>
       <div className="breakdown-container">
         <div
@@ -98,12 +99,12 @@ const RatingBreakdown = ({
           <div
             className="for5 bar"
             style={{
-              width: (reviewMetadata.ratings[5] / totalReviews) * 100 + "%",
+              width: ((reviewMetadata.ratings[5] || 0 )/ totalReviews) * 100 + "%",
             }}
           ></div>
         </div>
         <div className="ratingCount text-style-2 for5">
-          {reviewMetadata.ratings[5]}
+          {reviewMetadata.ratings[5]  || 0 }
         </div>
 
         <div
@@ -116,12 +117,12 @@ const RatingBreakdown = ({
           <div
             className="bar for4"
             style={{
-              width: (reviewMetadata.ratings[4] / totalReviews) * 100 + "%",
+              width: ((reviewMetadata.ratings[4]  || 0 )/ totalReviews) * 100 + "%",
             }}
           ></div>
         </div>
         <div className="ratingCount text-style-2 for4">
-          {reviewMetadata.ratings[4]}
+          {reviewMetadata.ratings[4]  || 0 }
         </div>
 
         <div
@@ -134,12 +135,12 @@ const RatingBreakdown = ({
           <div
             className="bar for3"
             style={{
-              width: (reviewMetadata.ratings[3] / totalReviews) * 100 + "%",
+              width: ((reviewMetadata.ratings[3]  || 0 ) / totalReviews) * 100 + "%",
             }}
           ></div>
         </div>
         <div className="ratingCount text-style-2 for3">
-          {reviewMetadata.ratings[3]}
+          {reviewMetadata.ratings[3]  || 0 }
         </div>
 
         <div
@@ -152,12 +153,12 @@ const RatingBreakdown = ({
           <div
             className="bar for2"
             style={{
-              width: (reviewMetadata.ratings[2] / totalReviews) * 100 + "%",
+              width: ((reviewMetadata.ratings[2]  || 0 ) / totalReviews) * 100 + "%",
             }}
           ></div>
         </div>
         <div className="ratingCount text-style-2 for2">
-          {reviewMetadata.ratings[2]}
+          {reviewMetadata.ratings[2]  || 0 }
         </div>
 
         <div
@@ -171,18 +172,18 @@ const RatingBreakdown = ({
           <div
             className="bar for1"
             style={{
-              width: (reviewMetadata.ratings[1] / totalReviews) * 100 + "%",
+              width: ((reviewMetadata.ratings[1] || 0 )/ totalReviews) * 100 + "%",
             }}
           ></div>
         </div>
         <div className="ratingCount text-style-2 for1">
-          {reviewMetadata.ratings[1]}
+          {reviewMetadata.ratings[1]  || 0 }
         </div>
       </div>
       {displayfilterRating()}
       {viewAllButtonDisplay()}
     </>
-  );
+    : <></>  );
 };
 
 export default RatingBreakdown;
