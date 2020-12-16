@@ -21,7 +21,7 @@ const ratings = reviewMetadata.ratings;
       ratings[5] * 5) /
     totalReviews;
   const width = (averageRating / 5) * 100;
-
+console.log(reviewMetadata)
   return (
     <div className="ratings">
       <span className="average-rating">{(averageRating).toFixed(2)}</span>

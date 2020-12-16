@@ -23,11 +23,10 @@ const RatingsAndReviews = ({ productInfoData }) => {
         reviewMetadata.ratings[3] +
         reviewMetadata.ratings[4] +
         reviewMetadata.ratings[5]
-
-
+console.log('totalReviews: ', totalReviews)
   useEffect(() => {
     updateReviewListState(productInfoData.id, totalReviews);
-    updateReviewMetadataState(productInfoData.id);
+    // updateReviewMetadataState(productInfoData.id);
   }, []);
 
 

@@ -154,10 +154,10 @@ const ReviewsFeed = ({
                       {review.photos.map((photo) => {
                         return (
                           <>
-                            {showModal === true ? displayModal(altImage) : <></>}
+                            {showModal === true ? displayModal('https://images.unsplash.com/photo-1548883354-7622d03aca27?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1861&q=80') : <></>}
                             <img
                               className="photo-thumbnail"
-                              src={altImage}
+                              src='https://images.unsplash.com/photo-1548883354-7622d03aca27?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1861&q=80'
                               onClick={handleClickPhoto}
                             ></img>
                           </>
