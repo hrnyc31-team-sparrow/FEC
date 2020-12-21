@@ -17,10 +17,11 @@ const RatingsAndReviews = ({ productInfoData }) => {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [reviewMetadata, setReviewMetadata] = useState(reviewMetadataData);
 
-  useEffect(() => {
-    updateReviewMetadataState(productInfoData.id);
-  }, []);
-  const totalReviews=
+  /*  useEffect(() => {
+      updateReviewMetadataState(productInfoData.id);
+    }, []);
+  */
+  const totalReviews =
           (reviewMetadata.ratings[1] || 0) +
           (reviewMetadata.ratings[2] || 0) +
           (reviewMetadata.ratings[3] || 0) +

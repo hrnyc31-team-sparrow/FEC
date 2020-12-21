@@ -4,6 +4,13 @@ Product Section of an ECommerce Web Portal constructed by a team of devs in acco
 
 This front-end project was engineered using React Hook base framework coupled with Redux and Redux hooks for global state management of key variables.  Sass was utilized for styling to enable a consistent theme across components built by different developers.  Finally, the application is rendered using an Express server along with the Axios library to retrieve data from a headless API.
 
+---
+
+## Application Snapshots
+![](readme-images/Product-Overview.gif)
+![](readme-images/Reviews.gif)
+
+---
 ## Table of Contents
 1. [Installing Dependencies](#Installing-Dependencies)
 2. [Tech Stack](#Tech-Stack)

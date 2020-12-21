@@ -4,7 +4,6 @@ import productInfoData from "../../mockData/productInfoData.js";
 import Overview from "./components/overview/Overview";
 import { useDispatch, useSelector } from 'react-redux';
 import { handleProductUpdate, handleReviewMetadataUpdate, handleProductStylesUpdate } from "./actions";
-import pic from '../dist/images/magnifying-glass-black.png'
 
 const App = () => {
   const productId = useSelector(state => state.productId);
@@ -17,8 +16,8 @@ const App = () => {
 
   useEffect(() => {
     dispatch(handleProductUpdate(productId));
-    dispatch(handleReviewMetadataUpdate(productId));
     dispatch(handleProductStylesUpdate(productId));
+    dispatch(handleReviewMetadataUpdate(productId));
   }, [productId]);
 
 

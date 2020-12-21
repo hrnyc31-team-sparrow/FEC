@@ -38,23 +38,16 @@
             overflow: hidden;
         }
             .default {
-                cursor: pointer;
-                max-height: 100%;
-                max-width: 75%;
+                cursor: url('/client/dist/images/magnifying-glass-black.png'), auto;
+                height: 100%;
             }
             .expanded {
-                cursor: cell;
-                max-height: 100%;
-                max-width: 75%;
+                cursor: url('/client/dist/images/plus-icon.png'), auto;
+                height: 100%;
             }
-            .zoomed {
-                max-height: 250%;
-                max-width: 175%;
-                cursor: ew-resize;
-            }
+
             .main-image {
                 position: absolute;
-                
                 left: 0;
                 right: 0;
                 margin-left: auto;
@@ -63,8 +56,15 @@
                 bottom: 0;
                 margin-top: auto;
                 margin-bottom: auto;
-                padding-left: 95px;
                 pointer-events: all;
+            }
+
+            .zoomed {
+                height: 50%;
+                width: 50%;
+                transform: scale(2.0);
+                object-fit: none;
+                cursor: url('/client/dist/images/minus-icon.png'), auto;
             }
 
             .overlay-container {
@@ -72,8 +72,17 @@
                 height: 100%;
                 width: 100%;
                 pointer-events: none;
+                background-color: rgba(255, 255, 255, 0.2);
             }
             
+            .main-image-zoomed {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                transform: scale(2.5);
+                object-fit: none;
+              }
+
             .expand-view {
                 position: absolute;
                 cursor: pointer;
@@ -85,19 +94,21 @@
                 margin-top: auto;
                 margin-right: auto;
                 pointer-events: all;
+                filter:brightness(20%);
             }
 
             .arrow-right,
             .arrow-left {
                 position: absolute;
                 cursor: pointer;
-                max-width: 20px;
+                max-width: 1.5em;
                 padding: 10px;
                 top: 0;
                 bottom: 0;
                 margin-top: auto;
                 margin-bottom: auto;
                 pointer-events: all;
+                filter: brightness(30%);
             }
 
             .arrow-right {
