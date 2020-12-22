@@ -53,13 +53,22 @@ npm run build-dev
 
 ---
 
-## Optimization
+## Optimization Utilizing Google Lighthouse
 
-Reduced first contentful paint by...
-
+Increased performance score to 95 from 34, First Contentful Paint to 0.5s from 5.1s, and Time to Interactive to 0.5s from 5.4s.  Methods utilized were eliminating unused code, moving Google Fonts from Bundle.js to direct link in HTML, incorporation of an NPM compression module, and switching Webpack to production mode to optimize Bundle.js size.
+```
+![](readme-images/Initial-Audit.png)
+![](readme-images/Initial-Audit-Details.png)
+```
+![](readme-images/Audit-Production.png)
+![](readme-images/Audit-Production-Details.png)
+```
 ---
 
 ## Components
 
 ### Product Overview
 >Main focus of the product page contains a interactive image gallery with scroll buttons and synchronized thumbnails for easy navigation, a product overview panel that includes style selection, and product description and details.
+
+### Ratings & Reviews
+>The Ratings & Reviews section will allow viewing and submission of reviews for the product selected. This component will extend the ability to write, read, and browse through reviews for the current product. All reviews will be saved per product.

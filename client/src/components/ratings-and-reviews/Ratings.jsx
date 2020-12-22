@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import StarRating from "./StarRating";
 import RatingBreakdown from "./RatingBreakdown";
 

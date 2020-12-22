@@ -7,4 +7,4 @@ const compression = require('compression');
 app.use(compression());
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
 
-app.listen(port, () => console.log('Greenfield app listening on port ', port));
+app.listen(port, () => console.log('Crisp app listening on port ', port));
