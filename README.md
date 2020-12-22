@@ -6,8 +6,16 @@ This front-end project was engineered using React Hook base framework coupled wi
 
 ---
 
-## Application Snapshots
+## Application Overview
+
+### Product Overview
+>Main focus of the product page contains a interactive image gallery with scroll buttons and synchronized thumbnails for easy navigation, a product overview panel that includes style selection, and product description and details.
+
 ![](readme-images/Product-Overview.gif)
+
+### Ratings & Reviews
+>The Ratings & Reviews section will allow viewing and submission of reviews for the product selected. This component will extend the ability to write, read, and browse through reviews for the current product. All reviews will be saved per product.
+
 ![](readme-images/Reviews.gif)
 
 ---
@@ -15,7 +23,6 @@ This front-end project was engineered using React Hook base framework coupled wi
 1. [Installing Dependencies](#Installing-Dependencies)
 2. [Tech Stack](#Tech-Stack)
 3. [Optimization](#Optimization)
-4. [Components](#Components)
 5. [Contributors](#Contributers)
 
 ---
@@ -60,15 +67,8 @@ Increased performance score to 95 from 34, First Contentful Paint to 0.5s from 5
 ![](readme-images/Initial-Audit.png)
 ![](readme-images/Initial-Audit-Details.png)
 ```
+```
 ![](readme-images/Audit-Production.png)
 ![](readme-images/Audit-Production-Details.png)
 ```
 ---
-
-## Components
-
-### Product Overview
->Main focus of the product page contains a interactive image gallery with scroll buttons and synchronized thumbnails for easy navigation, a product overview panel that includes style selection, and product description and details.
-
-### Ratings & Reviews
->The Ratings & Reviews section will allow viewing and submission of reviews for the product selected. This component will extend the ability to write, read, and browse through reviews for the current product. All reviews will be saved per product.
