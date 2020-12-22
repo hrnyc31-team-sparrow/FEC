@@ -23,7 +23,7 @@ This front-end project was engineered using React Hook base framework coupled wi
 1. [Installing Dependencies](#Installing-Dependencies)
 2. [Tech Stack](#Tech-Stack)
 3. [Optimization](#Optimization)
-5. [Contributors](#Contributers)
+5. [Dev Team](#Contributers)
 
 ---
 
@@ -63,12 +63,16 @@ npm run build-dev
 ## Optimization Utilizing Google Lighthouse
 
 Increased performance score to 95 from 34, First Contentful Paint to 0.5s from 5.1s, and Time to Interactive to 0.5s from 5.4s.  Methods utilized were eliminating unused code, moving Google Fonts from Bundle.js to direct link in HTML, incorporation of an NPM compression module, and switching Webpack to production mode to optimize Bundle.js size.
-```
+
 ![](readme-images/Initial-Audit.png)
 ![](readme-images/Initial-Audit-Details.png)
-```
-```
+
 ![](readme-images/Audit-Production.png)
 ![](readme-images/Audit-Production-Details.png)
-```
+
 ---
+
+## Dev Team
+
+### Matt Engel @github.com/mengel142
+### Nuri Kim @github.com/nurigk
