@@ -2,14 +2,12 @@ import React, { useState, useEffect } from "react";
 import Ratings from "./Ratings";
 import ReviewsFeed from "./ReviewsFeed";
 import reviewMetadataData from "../../../../mockData/reviewMetadataData";
-import reviewsListData from "../../../../mockData/reviewsListData";
 import {
   getReviewList,
   getReviewMetadata,
   updateReviewHelpfulness,
-  reportReview,
+  reportReview
 } from "../../apiMaster.js";
-import { handleReviewMetadataUpdate } from "../../actions";
 
 const RatingsAndReviews = ({ productInfoData }) => {
   const [reviewsList, setReviewsList] = useState([]);
@@ -17,10 +15,10 @@ const RatingsAndReviews = ({ productInfoData }) => {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [reviewMetadata, setReviewMetadata] = useState(reviewMetadataData);
 
-  /*  useEffect(() => {
-      updateReviewMetadataState(productInfoData.id);
-    }, []);
-  */
+  useEffect(() => {
+    updateReviewMetadataState(productInfoData.id);
+  }, []);
+
   const totalReviews =
           (reviewMetadata.ratings[1] || 0) +
           (reviewMetadata.ratings[2] || 0) +
